@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Pastry English Quiz — Book 2 (Ch. 21–25)</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pastry-bg: #FFFBF5;
+      --pastry-card: #FFFFFF;
+      --pastry-border: #FDE68A;
+      --pastry-border-soft: #F3E8D8;
+      --pastry-caramel: #B45309;
+      --pastry-amber: #D97706;
+      --pastry-espresso: #451A03;
+      --pastry-emerald: #059669;
+      --pastry-rose: #E11D48;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      background-color: #EFE7DC;
+      color: #451A03;
+    }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-5px); }
+      40% { transform: translateX(5px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+    .animate-fade-up {
+      animation: fadeSlideUp 0.22s ease-out forwards;
+    }
+    .animate-shake {
+      animation: shake 0.34s ease-in-out;
+    }
+    /* Sembunyikan scrollbar pada bar filter horizontal */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-200 selection:text-[#451A03]">
+
+  <!-- Kontainer Mobile-First -->
+  <div id="app" class="max-w-md mx-auto min-h-screen bg-[#FFFBF5] shadow-2xl flex flex-col relative overflow-x-hidden">
+
+    <!-- ==================== STICKY HEADER ==================== -->
+    <header id="stickyHeader" class="sticky top-0 z-30 bg-[#FFFBF5]/95 backdrop-blur-md border-b border-[#F3E8D8] shadow-xs">
+      <!-- Baris Judul & Aksi -->
+      <div class="px-3.5 pt-3 pb-2 flex items-center justify-between gap-2">
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base leading-none" aria-hidden="true">🥖</span>
+            <h1 class="text-[15px] font-extrabold text-[#451A03] leading-tight truncate">
+              Pastry English Quiz
+            </h1>
+          </div>
+          <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
+            <span class="text-[11px] font-bold text-[#B45309]">Book 2 • Ch. 21–25</span>
+            <span class="text-[11px] text-amber-900/40">•</span>
+            <span id="headerScoreBadge" class="text-[11px] font-bold text-[#059669] bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+              0/50 Benar
+            </span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1.5 shrink-0">
+          <!-- Tombol Hasil & Evaluasi -->
+          <button id="openEvalBtn" type="button" aria-label="Buka Hasil dan Evaluasi" class="min-h-[44px] px-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 active:scale-95 text-[#451A03] text-xs font-bold flex items-center gap-1 transition">
+            <span>📊</span>
+            <span>Hasil</span>
+          </button>
+          <!-- Tombol Ikon Daftar Soal -->
+          <button id="openDrawerBtn" type="button" aria-label="Buka Daftar Soal 1 sampai 50" class="min-h-[44px] min-w-[44px] px-2.5 rounded-xl bg-[#451A03] hover:bg-amber-950 active:scale-95 text-[#FFFBF5] text-xs font-bold flex items-center justify-center gap-1.5 transition">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+            </svg>
+            <span>1–50</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Progress Bar Global -->
+      <div class="w-full h-1.5 bg-amber-100">
+        <div id="globalProgressBar" class="h-full bg-gradient-to-r from-[#B45309] via-[#D97706] to-[#059669] transition-all duration-300" style="width: 0%"></div>
+      </div>
+
+      <!-- Bar Filter Horizontal (Swipeable) -->
+      <div class="px-3.5 py-2 bg-amber-50/70 border-t border-[#F3E8D8] flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <button data-filter="all" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-[#B45309] text-white transition active:scale-95">Semua</button>
+        <button data-filter="ch21" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 21</button>
+        <button data-filter="ch22" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 22</button>
+        <button data-filter="ch23" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 23</button>
+        <button data-filter="ch24" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 24</button>
+        <button data-filter="ch25" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 25</button>
+        <button data-filter="pg" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">PG</button>
+        <button data-filter="pgk" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">PGK</button>
+        <button data-filter="unsolved" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Belum Benar</button>
+      </div>
+    </header>
+
+    <!-- ==================== TAMPILAN UTAMA KUIS ==================== -->
+    <main id="quizView" class="flex-1 overflow-y-auto px-4 pt-4 pb-28">
+      <!-- State Kosong saat Filter "Belum Benar" sudah selesai semua -->
+      <div id="emptyFilterCard" class="hidden bg-white rounded-3xl p-6 border border-emerald-200 shadow-sm text-center animate-fade-up">
+        <div class="text-4xl mb-2">🎉</div>
+        <h2 class="text-lg font-extrabold text-[#451A03]">Semua Soal Sudah Benar!</h2>
+        <p class="text-sm text-amber-900/75 mt-1.5 leading-relaxed">
+          Tidak ada soal tersisa pada filter ini. Kamu bisa mengecek ringkasan nilai atau kembali melihat seluruh 50 soal.
+        </p>
+        <div class="mt-4 flex flex-col gap-2">
+          <button id="emptyToEvalBtn" type="button" class="min-h-[50px] w-full rounded-2xl bg-[#059669] hover:bg-emerald-700 text-white font-bold text-sm transition">
+            📊 Lihat Hasil &amp; Evaluasi
+          </button>
+          <button id="emptyToAllBtn" type="button" class="min-h-[48px] w-full rounded-2xl bg-amber-100 hover:bg-amber-200 text-[#451A03] font-bold text-sm transition">
+            Tampilkan Semua 50 Soal
+          </button>
+        </div>
+      </div>
+
+      <!-- Kartu Pertanyaan -->
+      <article id="questionCard" class="bg-white rounded-3xl p-5 border border-[#FDE68A] shadow-sm mb-4 animate-fade-up">
+        <!-- Baris Badge Chapter & Tipe Soal -->
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span id="qChapterBadge" class="px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-amber-100 text-[#B45309]">
+              Ch. 21 • Food &amp; Kitchen Safety
+            </span>
+            <span id="qTypeBadge" class="px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-stone-100 text-[#451A03]">
+              Pilihan Ganda
+            </span>
+          </div>
+          <span id="qAttemptBadge" class="text-[11px] font-bold text-amber-900/50"></span>
+        </div>
+
+        <!-- Nomor Soal -->
+        <div id="qNumberLabel" class="text-xs font-extrabold uppercase tracking-wider text-[#D97706] mb-1.5">
+          Soal 1 / 50
+        </div>
+
+        <!-- Teks Pertanyaan -->
+        <h2 id="questionText" class="text-[16px] font-bold text-[#451A03] leading-relaxed whitespace-pre-line">
+          Memuat pertanyaan...
+        </h2>
+
+        <!-- Info Khusus PG Kompleks -->
+        <div id="pgkCallout" class="hidden mt-3 px-3.5 py-2.5 rounded-2xl bg-indigo-50 border border-indigo-200 text-xs font-semibold text-indigo-900 flex items-start gap-2">
+          <span class="text-sm leading-none mt-0.5">☑️</span>
+          <span><strong>PG Kompleks — Pilih lebih dari satu</strong> jawaban yang benar (bisa 2 atau 3 opsi).</span>
+        </div>
+      </article>
+
+      <!-- Daftar Pilihan [A, B, C, D] -->
+      <div id="optionsContainer" class="space-y-2.5 mb-4">
+        <!-- Diisi via JavaScript -->
+      </div>
+
+      <!-- Kartu Auto-Koreksi / Feedback Benar -->
+      <div id="feedbackCard" class="hidden rounded-3xl p-4 border-2 mb-4 animate-fade-up">
+        <!-- Diisi via JavaScript -->
+      </div>
+    </main>
+
+    <!-- ==================== HALAMAN HASIL & EVALUASI ==================== -->
+    <section id="evalView" class="hidden flex-1 overflow-y-auto px-4 pt-4 pb-10 animate-fade-up">
+      <!-- Kartu Skor Utama -->
+      <div class="bg-gradient-to-br from-[#B45309] via-[#D97706] to-[#451A03] rounded-3xl p-5 text-white text-center shadow-lg shadow-amber-900/15 mb-4">
+        <div id="evalEmoji" class="text-4xl mb-1.5">🥖</div>
+        <h2 class="text-xl font-extrabold">Hasil &amp; Evaluasi</h2>
+        <p id="evalSub" class="text-xs text-amber-100 mt-1">Pastry English Quiz — Book 2 (Ch. 21–25)</p>
+
+        <div class="mt-4 grid grid-cols-2 gap-2.5">
+          <div class="bg-white/15 backdrop-blur-xs rounded-2xl p-3">
+            <div id="evalTotalScore" class="text-2xl font-extrabold">0/50</div>
+            <div class="text-[11px] text-amber-100 font-semibold mt-0.5">Total Benar</div>
+          </div>
+          <div class="bg-white/15 backdrop-blur-xs rounded-2xl p-3">
+            <div id="evalAccuracyPct" class="text-2xl font-extrabold">0%</div>
+            <div class="text-[11px] text-amber-100 font-semibold mt-0.5">Skor Persentase</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Status Ringkas -->
+      <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+        <div class="bg-white rounded-2xl p-3 border border-emerald-200 shadow-xs">
+          <div id="statCorrect" class="text-xl font-extrabold text-[#059669]">0</div>
+          <div class="text-[11px] font-semibold text-amber-950/60 mt-0.5">Benar</div>
+        </div>
+        <div class="bg-white rounded-2xl p-3 border border-rose-200 shadow-xs">
+          <div id="statWrong" class="text-xl font-extrabold text-[#E11D48]">0</div>
+          <div class="text-[11px] font-semibold text-amber-950/60 mt-0.5">Salah/Revisi</div>
+        </div>
+        <div class="bg-white rounded-2xl p-3 border border-[#F3E8D8] shadow-xs">
+          <div id="statUnanswered" class="text-xl font-extrabold text-stone-500">50</div>
+          <div class="text-[11px] font-semibold text-amber-950/60 mt-0.5">Belum Dijawab</div>
+        </div>
+      </div>
+
+      <!-- Statistik PG vs PGK -->
+      <div class="bg-white rounded-3xl p-4 border border-[#FDE68A] shadow-sm mb-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-sm font-extrabold text-[#451A03]">Statistik PG vs PGK</h3>
+          <span id="evalFirstTryChip" class="text-[11px] font-bold text-[#059669] bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">0 benar 1x coba</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2.5">
+          <div class="p-3 rounded-2xl bg-amber-50/80 border border-[#FDE68A]">
+            <div class="text-[11px] font-bold text-[#B45309]">Pilihan Ganda (PG)</div>
+            <div id="evalPgScore" class="text-lg font-extrabold text-[#451A03] mt-0.5">0 / 35</div>
+            <div id="evalPgPct" class="text-[11px] text-amber-900/70 font-medium">0% selesai</div>
+          </div>
+          <div class="p-3 rounded-2xl bg-indigo-50/80 border border-indigo-200">
+            <div class="text-[11px] font-bold text-indigo-800">PG Kompleks (PGK)</div>
+            <div id="evalPgkScore" class="text-lg font-extrabold text-[#451A03] mt-0.5">0 / 15</div>
+            <div id="evalPgkPct" class="text-[11px] text-indigo-900/70 font-medium">0% selesai</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rincian Performa per Chapter (Ch. 21–25) -->
+      <div class="bg-white rounded-3xl p-4 border border-[#FDE68A] shadow-sm mb-5">
+        <h3 class="text-sm font-extrabold text-[#451A03] mb-3">Rincian Performa per Chapter (Ch. 21–25)</h3>
+        <div id="evalChapterList" class="space-y-3.5">
+          <!-- Diisi via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Tombol Aksi Evaluasi -->
+      <div class="space-y-2.5">
+        <button id="retryUnsolvedBtn" type="button" class="hidden w-full min-h-[50px] py-3 px-5 rounded-2xl bg-[#E11D48] hover:bg-rose-700 active:scale-[0.99] text-white font-extrabold text-sm shadow-md shadow-rose-200 transition">
+          🔁 Ulangi Soal Belum Benar
+        </button>
+        <button id="backToQuizBtn" type="button" class="w-full min-h-[50px] py-3 px-5 rounded-2xl bg-[#B45309] hover:bg-amber-800 active:scale-[0.99] text-white font-bold text-sm shadow-md shadow-amber-200 transition">
+          ← Kembali ke Kuis
+        </button>
+        <button id="evalResetAllBtn" type="button" class="w-full min-h-[48px] py-3 px-5 rounded-2xl bg-white border-2 border-rose-200 hover:bg-rose-50 active:scale-[0.99] text-[#E11D48] font-bold text-sm transition">
+          🔄 Reset Semua
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== STICKY BOTTOM BAR (AREA IBU JARI) ==================== -->
+    <footer id="stickyBottomBar" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md z-30 bg-[#FFFBF5]/95 backdrop-blur-md border-t border-[#F3E8D8] px-3.5 py-2.5">
+      <div class="flex items-center gap-2">
+        <button id="prevBtn" type="button" class="min-h-[50px] px-3.5 rounded-2xl bg-amber-100/90 hover:bg-amber-200 active:scale-95 disabled:opacity-40 text-[#451A03] font-bold text-xs flex items-center justify-center gap-1 shrink-0 transition">
+          <span>←</span>
+          <span>Prev</span>
+        </button>
+
+        <button id="checkBtn" type="button" class="flex-1 min-h-[50px] px-4 rounded-2xl bg-[#B45309] hover:bg-amber-800 active:scale-[0.98] disabled:bg-stone-300 disabled:text-stone-500 text-white font-extrabold text-sm shadow-md shadow-amber-900/15 transition flex items-center justify-center gap-1.5">
+          Periksa Jawaban
+        </button>
+
+        <button id="nextBtn" type="button" class="min-h-[50px] px-3.5 rounded-2xl bg-amber-100/90 hover:bg-amber-200 active:scale-95 text-[#451A03] font-bold text-xs flex items-center justify-center gap-1 shrink-0 transition">
+          <span id="nextBtnLabel">Next</span>
+          <span>→</span>
+        </button>
+      </div>
+    </footer>
+
+    <!-- ==================== BOTTOM SHEET: DAFTAR SOAL (1–50) ==================== -->
+    <div id="drawerModal" class="hidden fixed inset-0 z-50 flex items-end justify-center bg-[#451A03]/50 backdrop-blur-xs">
+      <div class="w-full max-w-md max-h-[84dvh] bg-[#FFFBF5] rounded-t-3xl flex flex-col shadow-2xl animate-fade-up">
+        <div class="w-10 h-1 bg-amber-300 rounded-full mx-auto mt-2.5"></div>
+
+        <div class="px-5 py-3.5 border-b border-[#F3E8D8] flex items-center justify-between">
+          <div>
+            <h3 class="font-extrabold text-base text-[#451A03]">Daftar Soal (1–50)</h3>
+            <p id="drawerSummaryText" class="text-xs font-semibold text-amber-900/75 mt-0.5">
+              Benar: 0 • Salah/Revisi: 0 • Belum: 50
+            </p>
+          </div>
+          <button id="closeDrawerBtn" type="button" aria-label="Tutup Daftar Soal" class="w-10 h-10 rounded-full bg-amber-100 hover:bg-amber-200 text-[#451A03] font-bold flex items-center justify-center">
+            ✕
+          </button>
+        </div>
+
+        <!-- Legenda Kode Warna -->
+        <div class="px-5 py-2.5 bg-amber-50/70 border-b border-[#F3E8D8] flex flex-wrap gap-x-3.5 gap-y-1.5 text-[11px] font-bold text-[#451A03]/80">
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#059669] inline-block"></span>Benar</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#E11D48] inline-block"></span>Salah/Revisi</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-stone-200 inline-block"></span>Belum</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full border-2 border-[#D97706] bg-white inline-block"></span>Aktif</span>
+        </div>
+
+        <!-- Grid 5 Kolom (1–50) -->
+        <div id="drawerGrid" class="p-4 overflow-y-auto grid grid-cols-5 gap-2">
+          <!-- Diisi via JavaScript -->
+        </div>
+
+        <!-- Footer Bottom Sheet -->
+        <div class="p-4 border-t border-[#F3E8D8] flex items-center gap-2">
+          <button id="drawerEvalBtn" type="button" class="flex-1 min-h-[48px] rounded-2xl bg-[#B45309] hover:bg-amber-800 text-white font-extrabold text-sm transition">
+            📊 Lihat Hasil &amp; Evaluasi
+          </button>
+          <button id="drawerResetBtn" type="button" class="min-h-[48px] px-4 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-[#E11D48] font-bold text-sm transition">
+            🔄 Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== MODAL KONFIRMASI RESET KUSTOM (TANPA window.confirm) ==================== -->
+    <div id="resetModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-5 bg-[#451A03]/55 backdrop-blur-xs">
+      <div class="w-full max-w-[340px] bg-[#FFFBF5] rounded-3xl p-6 shadow-2xl border border-[#FDE68A] animate-fade-up">
+        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-[#E11D48] flex items-center justify-center text-2xl mx-auto mb-3">
+          🔄
+        </div>
+        <h3 class="text-lg font-extrabold text-[#451A03] text-center">Reset Semua Progres?</h3>
+        <p class="text-xs text-amber-950/75 text-center mt-1.5 leading-relaxed">
+          Seluruh jawaban tersimpan, skor, dan status koreksi pada 50 soal akan dihapus agar kamu bisa mulai latihan dari awal.
+        </p>
+        <div class="grid grid-cols-2 gap-2.5 mt-5">
+          <button id="cancelResetBtn" type="button" class="min-h-[48px] rounded-2xl bg-amber-100 hover:bg-amber-200 text-[#451A03] font-bold text-sm transition">
+            Batal
+          </button>
+          <button id="confirmResetBtn" type="button" class="min-h-[48px] rounded-2xl bg-[#E11D48] hover:bg-rose-700 text-white font-bold text-sm transition">
+            Ya, Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== VANILLA JS: 50 SOAL LENGKAP & MESIN AUTO-KOREKSI ==================== -->
+  <script>
+    /**
+     * METADATA CHAPTER — English for Pastry Cook (Book 2, Chapter 21–25)
+     */
+    const CHAPTER_META = {
+      21: { short: "Ch. 21", title: "Food Safety & Kitchen Safety" },
+      22: { short: "Ch. 22", title: "Inventory & Receiving Deliveries" },
+      23: { short: "Ch. 23", title: "Professional CV & Self-Intro Video" },
+      24: { short: "Ch. 24", title: "Job Interview" },
+      25: { short: "Ch. 25", title: "Integrated Pastry Kitchen Review" }
+    };
+
+    const LETTERS = ["A", "B", "C", "D"];
+
+    /**
+     * BANK 50 SOAL LENGKAP (35 PG + 15 PGK; tepat 10 soal per Chapter)
+     * ATURAN ZERO-SPOILER:
+     * - `wrongReasons` menjelaskan kesalahan SPESIFIK untuk setiap opsi salah (A/B/C/D) tanpa membocorkan jawaban benar.
+     * - `ruleHint` menjelaskan aturan grammar/konsep ("Seharusnya...") tanpa menyebut huruf atau isi jawaban benar.
+     * - `correctFeedback` hanya muncul SETELAH user menjawab benar.
+     */
+    const QUESTIONS = [
+      // ==================== CHAPTER 21: FOOD SAFETY & KITCHEN SAFETY (Soal 1–10) ====================
+      {
+        id: 1, chapter: 21, type: "pg",
+        question: "Personal Hygiene & Safety Rules:\n'Food handlers ______ wash their hands before handling food, and they ______ touch a hot baking tray with bare hands.'",
+        options: {
+          A: "mustn't / must",
+          B: "must / mustn't",
+          C: "don't have to / must",
+          D: "must / don't have to"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Terbalik! Mencuci tangan sebelum mengolah makanan adalah kewajiban, sedangkan menyentuh loyang panas tanpa pelindung adalah larangan.",
+          C: "'don't have to' artinya tidak perlu (padahal mencuci tangan wajib), dan 'must' malah mewajibkan menyentuh loyang panas dengan tangan kosong!",
+          D: "'don't have to' hanya berarti tidak perlu, padahal menyentuh loyang panas dengan tangan kosong DILARANG keras (prohibited)."
+        },
+        ruleHint: "Ingat perbedaan Chapter 21: gunakan modal untuk ATURAN WAJIB ('harus') pada cuci tangan, dan modal LARANGAN KERAS ('tidak boleh/dilarang') pada tindakan berbahaya menyentuh loyang panas.",
+        correctFeedback: "Benar! 'must' menyatakan aturan wajib mencuci tangan, dan 'mustn't' menyatakan larangan keras menyentuh loyang panas tanpa oven mitts."
+      },
+      {
+        id: 2, chapter: 21, type: "pg",
+        question: "Choose the sentence that correctly shows the difference between 'DON'T HAVE TO' (not necessary) and 'MUSTN'T' (prohibited):",
+        options: {
+          A: "You mustn't wear gloves for every task if hands are clean, and you don't have to use dirty gloves.",
+          B: "You don't have to clean the oven during active production, but you mustn't use a damaged electrical appliance.",
+          C: "You don't have to wash your hands before cooking, because you mustn't follow safety rules.",
+          D: "You mustn't to run in the kitchen, and we doesn't have to wear hairnets."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Terbalik! Memakai sarung tangan kotor itu DILARANG keras (bukan sekadar 'tidak perlu'), sedangkan tidak perlu memakai sarung tangan pada tugas tertentu memakai 'don't have to'.",
+          C: "Salah secara logika keamanan pangan: pekerja wajib mencuci tangan dan wajib mengikuti aturan keselamatan.",
+          D: "Ada dua kesalahan grammar: setelah 'mustn't' tidak boleh ada 'to', dan subjek jamak 'we' tidak cocok dengan 'doesn't have to'."
+        },
+        ruleHint: "Bedakan di Chapter 21: 'don't have to' = tidak perlu/tidak wajib dilakukan sekarang; 'mustn't' = dilarang keras karena berbahaya atau melanggar higienitas. Pastikan juga tidak ada 'to' setelah 'mustn't'.",
+        correctFeedback: "Tepat sekali! Membersihkan oven saat sedang dipakai memang tidak perlu ('don't have to'), sedangkan memakai alat listrik rusak itu dilarang keras ('mustn't')."
+      },
+      {
+        id: 3, chapter: 21, type: "pg",
+        question: "A pastry worker uses the same knife for raw ingredients and ready-to-eat cakes WITHOUT washing and sanitizing it first. What serious food safety hazard can this cause?",
+        options: {
+          A: "Temperature control",
+          B: "Cross-contamination",
+          C: "First aid",
+          D: "Cleaning schedule"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "'Temperature control' adalah pengendalian suhu penyimpanan/pemanggangan, bukan perpindahan kuman lewat pisau kotor.",
+          C: "'First aid' adalah pertolongan pertama pada kecelakaan, bukan nama bahaya perpindahan bakteri.",
+          D: "'Cleaning schedule' adalah jadwal pembersihan dapur, bukan risiko keamanan pangan akibat pisau yang sama."
+        },
+        ruleHint: "Cek Word Bank Food Safety Chapter 21: istilah apa yang berarti 'kontaminasi silang' saat bakteri dari bahan mentah berpindah ke makanan siap santap?",
+        correctFeedback: "Benar! Memakai pisau yang sama tanpa dicuci antara bahan mentah dan makanan siap santap menyebabkan 'cross-contamination' (kontaminasi silang)."
+      },
+      {
+        id: 4, chapter: 21, type: "pg",
+        question: "You see spilled water on the pastry kitchen floor and a coworker walking toward it. Which safety warning and imperative instruction is the MOST appropriate?",
+        options: {
+          A: "Run faster over the water!",
+          B: "Be careful! The floor is slippery. Please clean it immediately.",
+          C: "Don't cleaning the wet floor.",
+          D: "Touch the hot oven right now!"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Berlari di atas lantai basah sangat berbahaya dan dilarang di dapur ('You mustn't run in the kitchen').",
+          C: "Selain salah secara keselamatan (lantai basah harus segera dibersihkan), setelah 'Don't' tidak boleh memakai verb-ing ('cleaning').",
+          D: "Instruksi ini berbahaya dan tidak nyambung dengan kondisi lantai basah."
+        },
+        ruleHint: "Ingat Useful Safety Warnings & Imperatives Chapter 21: beri peringatan singkat tentang kondisi lantai licin ('slippery') diikuti instruksi langsung/sopan dengan base verb.",
+        correctFeedback: "Tepat! 'Be careful! The floor is slippery. Please clean it immediately.' jelas, aman, dan benar secara grammar."
+      },
+      {
+        id: 5, chapter: 21, type: "pg",
+        question: "Reporting a Kitchen Accident (Simple Past):\n'Yesterday morning, a worker ______ on the wet floor, ______ his knee, and ______ a mixing bowl.'",
+        options: {
+          A: "slip / hurted / drop",
+          B: "slipped / hurt / dropped",
+          C: "sliped / hurt / droped",
+          D: "was slip / hurts / dropped"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Kejadiannya sudah lewat ('Yesterday morning'), jadi harus memakai V2; selain itu 'hurt' adalah irregular verb yang V2-nya bukan 'hurted'.",
+          C: "Perhatikan ejaan penggandaan konsonan akhir pada kata kerja pendek berakhiran konsonan-vokal-konsonan ('slip' dan 'drop') saat ditambah '-ed'.",
+          D: "'was slip' bukan struktur Simple Past aktif yang benar, dan 'hurts' adalah bentuk Present, bukan lampau."
+        },
+        ruleHint: "Cek tabel Simple Past for Reporting Accidents di Chapter 21: perhatikan ejaan 'slip' dan 'drop' (konsonan akhir digandakan sebelum -ed) serta irregular verb 'hurt' (bentuk V1 dan V2-nya sama!).",
+        correctFeedback: "Benar! Bentuk V2 yang tepat adalah 'slipped', 'hurt', dan 'dropped'."
+      },
+      {
+        id: 6, chapter: 21, type: "pg",
+        question: "Chef: '______ the worker ______ his finger while slicing fruit this morning?'\nAssistant: 'No, he ______ his finger; he burned his hand.'",
+        options: {
+          A: "Did / cut / didn't cut",
+          B: "Did / cutted / didn't cutted",
+          C: "Was / cut / didn't cut",
+          D: "Do / cut / don't cut"
+        },
+        correct: ["A"],
+        wrongReasons: {
+          B: "'cut' adalah irregular verb (tidak ada bentuk 'cutted'), dan setelah 'Did / didn't' selalu dipakai base verb (V1).",
+          C: "Pertanyaan Simple Past aktif untuk kata kerja aksi ('cut') memakai kata bantu 'Did', bukan 'Was'.",
+          D: "'Do / don't' dipakai untuk Simple Present (rutinitas), bukan untuk kecelakaan yang sudah terjadi tadi pagi ('this morning')."
+        },
+        ruleHint: "Ingat rumus Simple Past Chapter 21: Pertanyaan = 'Did + subject + BASE VERB?'; Negatif = 'didn't + BASE VERB'.",
+        correctFeedback: "Tepat! 'Did the worker cut...?' dan 'No, he didn't cut his finger...'"
+      },
+      {
+        id: 7, chapter: 21, type: "pg",
+        question: "What is the main purpose of wearing 'oven mitts' in a pastry kitchen?",
+        options: {
+          A: "To keep hair from falling into the batter.",
+          B: "To protect our hands from hot trays and hot ovens.",
+          C: "To mop spilled water on the kitchen floor.",
+          D: "To slice fresh fruit cleanly."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Alat untuk menjaga rambut tidak jatuh ke adonan adalah 'hairnet', bukan 'oven mitts'.",
+          C: "Mengepel air di lantai memakai kain pel ('mop'), bukan sarung tangan tahan panas.",
+          D: "Memotong buah menggunakan pisau ('knife'), bukan 'oven mitts'."
+        },
+        ruleHint: "Cek Word Bank Kitchen Safety Chapter 21: 'oven mitts' artinya sarung tangan tahan panas—bagian tubuh mana yang dilindungi dari peralatan panas?",
+        correctFeedback: "Benar! Oven mitts melindungi tangan kita dari loyang dan oven panas agar terhindar dari luka bakar ('burn')."
+      },
+      {
+        id: 8, chapter: 21, type: "pgk",
+        question: "Select ALL grammatically CORRECT safety rules and instructions from Chapter 21.",
+        options: {
+          A: "You must wear a clean apron and hairnet.",
+          B: "You mustn't leave a sharp knife near the edge of the table.",
+          C: "Don't touches hot equipment without protection.",
+          D: "She has to check the food labels before production."
+        },
+        correct: ["A", "B", "D"],
+        wrongReasons: {
+          C: "Pada negative imperative, setelah 'Don't' kata kerja wajib berbentuk dasar (V1) tanpa akhiran '-es' ('touches')."
+        },
+        ruleHint: "Periksa aturan grammar Chapter 21: 'must / mustn't + V1', 'has to + V1' (untuk 'She'), dan 'Don't + BASE VERB' (tanpa -es).",
+        correctFeedback: "Mantap! A, B, dan D semuanya tepat secara grammar maupun aturan keselamatan dapur."
+      },
+      {
+        id: 9, chapter: 21, type: "pgk",
+        question: "Select ALL sentences that report kitchen accidents using the CORRECT Simple Past (V2) verb forms.",
+        options: {
+          A: "The pastry assistant broke a glass bowl yesterday.",
+          B: "He fell near the washing area this morning.",
+          C: "She spiled hot milk on the workstation.",
+          D: "The accident happened before noon, and we informed the supervisor."
+        },
+        correct: ["A", "B", "D"],
+        wrongReasons: {
+          C: "Ejaan V2 dari 'spill' (menumpahkan) mempertahankan dua huruf 'l' sebelum ditambah '-ed' ('spilled', bukan 'spiled')."
+        },
+        ruleHint: "Cek tabel Present → Past (V2) di Chapter 21: 'break → broke', 'fall → fell', 'happen → happened', dan perhatikan ejaan ganda huruf 'l' pada 'spill'.",
+        correctFeedback: "Benar! 'broke', 'fell', dan 'happened / informed' semuanya bentuk Simple Past yang akurat."
+      },
+      {
+        id: 10, chapter: 21, type: "pgk",
+        question: "Select ALL SAFE personal hygiene and kitchen safety practices according to Chapter 21.",
+        options: {
+          A: "Report any illness or uncovered wound to the supervisor.",
+          B: "Keep nails clean and wash hands before handling food.",
+          C: "Clean spills immediately and keep the kitchen floor dry.",
+          D: "Treat a serious burn yourself even if it is beyond your training."
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "Catatan penting Chapter 21: segera lapor dan cari pertolongan medis/first aid yang sesuai—JANGAN mencoba penanganan medis di luar pelatihanmu ('Do not attempt treatment beyond your training')."
+        },
+        ruleHint: "Pilih semua tindakan yang sesuai prosedur higienitas diri, kebersihan lantai, dan batas aman penanganan insiden di Chapter 21.",
+        correctFeedback: "Sangat baik! A, B, dan C adalah praktik keselamatan dan higienitas dapur yang profesional."
+      },
+
+      // ==================== CHAPTER 22: INVENTORY & RECEIVING DELIVERIES (Soal 11–20) ====================
+      {
+        id: 11, chapter: 22, type: "pg",
+        question: "Checking Kitchen Stock:\n'We have ______ butter in the chiller, but we don't have ______ eggs. Do we have ______ fresh cream?'",
+        options: {
+          A: "any / some / some",
+          B: "some / any / any",
+          C: "some / some / any",
+          D: "any / any / some"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Terbalik! Kalimat positif ('We have...') memakai 'some', sedangkan kalimat negatif ('don't have') dan tanya ('Do we have...?') memakai 'any'.",
+          C: "Bagian kedua adalah kalimat negatif ('we don't have...'), sehingga tidak memakai 'some'.",
+          D: "Bagian pertama adalah kalimat positif (bukan 'any'), dan bagian ketiga adalah kalimat tanya stok (bukan 'some')."
+        },
+        ruleHint: "Ingat aturan Some & Any Chapter 22: satu kata untuk kalimat POSITIF (dan tawaran sopan), satu lagi untuk kalimat NEGATIF dan TANYA.",
+        correctFeedback: "Benar! 'some butter' (positif), 'any eggs' (negatif), dan 'any fresh cream' (pertanyaan)."
+      },
+      {
+        id: 12, chapter: 22, type: "pg",
+        question: "Supervisor: 'How ______ flour do we need for tomorrow, and how ______ bags of flour are in the storage room?'",
+        options: {
+          A: "many / much",
+          B: "much / many",
+          C: "much / much",
+          D: "many / many"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Terbalik! 'flour' saja adalah uncountable (tak terhitung), sedangkan 'bags of flour' (karung tepung) bisa dihitung (countable plural).",
+          C: "'bags' (karung/kantong) berbentuk jamak dan bisa dihitung 1, 2, 5 karung, jadi tidak memakai 'much'.",
+          D: "'flour' (tanpa satuan wadah seperti bags/kg) adalah uncountable noun, jadi tidak memakai 'many'."
+        },
+        ruleHint: "Perhatikan bedanya di Chapter 22: 'flour' sendiri = uncountable (pakai 'much'), sedangkan wadahnya seperti 'bags / boxes / containers' = countable plural (pakai 'many').",
+        correctFeedback: "Tepat! 'How much flour' (uncountable) dan 'how many bags of flour' (countable plural)."
+      },
+      {
+        id: 13, chapter: 22, type: "pg",
+        question: "Receiving a Delivery (Present Perfect):\n'The supplier ______ five bags of flour, and we ______ the delivery note, but we ______ the fresh cream yet.'",
+        options: {
+          A: "have sent / has checked / haven't received",
+          B: "has sent / have checked / haven't received",
+          C: "has send / have check / didn't received",
+          D: "sent / checked / hasn't received"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Terbalik! 'The supplier' adalah tunggal (memakai 'has'), sedangkan 'we' adalah jamak (memakai 'have').",
+          C: "Setelah 'has/have' wajib memakai V3 ('sent / checked', bukan V1), dan 'didn't' tidak boleh diikuti V3 ('received').",
+          D: "Subjek jamak 'we' tidak boleh memakai 'hasn't' (khusus subjek tunggal he/she/it)."
+        },
+        ruleHint: "Gunakan rumus Present Perfect Chapter 22: subjek tunggal ('The supplier') memakai 'has + V3', subjek jamak ('we') memakai 'have / haven't + V3'.",
+        correctFeedback: "Sempurna! 'The supplier has sent...', 'we have checked...', dan 'we haven't received... yet'."
+      },
+      {
+        id: 14, chapter: 22, type: "pg",
+        question: "Look at the kitchen stock report: Available eggs = 10 pieces | Required eggs = 30 pieces. Available butter = 0 kg | Required butter = 3 kg.\nWhich inventory status description is ACCURATE?",
+        options: {
+          A: "Our egg stock is enough, and butter is low.",
+          B: "Our egg stock is low, and butter is out of stock.",
+          C: "Both eggs and butter are enough for production.",
+          D: "We have too many eggs and some butter."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "10 butir masih kurang dari 30 (bukan 'enough'), dan 0 kg berarti habis total (bukan sekadar 'low').",
+          C: "Stok telur kurang 20 butir dan mentega 0 kg, jadi jelas tidak cukup ('not enough').",
+          D: "Stok telur masih kurang (bukan kelebihan) dan mentega 0 kg (berarti 'no butter / don't have any butter')."
+        },
+        ruleHint: "Bandingkan Available Stock vs Required Stock (Activity 4 Chapter 22): ada tapi kurang dari kebutuhan = 'low', sedangkan 0 = habis total ('out of stock').",
+        correctFeedback: "Benar! Telur (10 dari 30) berstatus 'low', sedangkan mentega (0 kg) berstatus 'out of stock'."
+      },
+      {
+        id: 15, chapter: 22, type: "pg",
+        question: "A supplier arrives with boxes of chocolate and flour. Which document lists the items being delivered so the pastry assistant can check the quantities?",
+        options: {
+          A: "Delivery note",
+          B: "First aid kit",
+          C: "Hairnet",
+          D: "Recipe title"
+        },
+        correct: ["A"],
+        wrongReasons: {
+          B: "'First aid kit' adalah kotak pertolongan pertama untuk kecelakaan kerja, bukan dokumen pengiriman.",
+          C: "'Hairnet' adalah penutup rambut untuk kebersihan diri, bukan dokumen.",
+          D: "'Recipe title' adalah judul resep masakan, bukan dokumen pengiriman barang dari pemasok."
+        },
+        ruleHint: "Cek Word Bank Inventory and Delivery Vocabulary di Chapter 22: cari istilah bahasa Inggris untuk 'surat jalan' yang dicek saat menerima pengiriman.",
+        correctFeedback: "Tepat! 'Delivery note' (surat jalan) digunakan untuk memeriksa kesesuaian barang yang diterima."
+      },
+      {
+        id: 16, chapter: 22, type: "pg",
+        question: "We ordered 30 eggs from the supplier, but only 25 eggs arrived and 2 boxes of cake containers were broken. In inventory vocabulary, the 5 eggs that did not arrive are called ______, and the broken boxes are called ______.",
+        options: {
+          A: "damaged goods / missing items",
+          B: "missing items / damaged goods",
+          C: "restock / invoice",
+          D: "shortage / expiry date"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Terbalik! Barang yang tidak datang adalah 'missing items', sedangkan barang yang rusak/pecah adalah 'damaged goods'.",
+          C: "'restock' berarti mengisi kembali stok dan 'invoice' adalah faktur tagihan, bukan barang hilang/rusak.",
+          D: "'expiry date' adalah tanggal kedaluwarsa, bukan barang yang rusak/pecah."
+        },
+        ruleHint: "Cek Word Bank Chapter 22: bedakan istilah untuk 'barang yang tidak ada/hilang' vs 'barang rusak'.",
+        correctFeedback: "Benar! Barang yang tidak datang disebut 'missing items' dan barang yang pecah/rusak disebut 'damaged goods'."
+      },
+      {
+        id: 17, chapter: 22, type: "pg",
+        question: "Choose the MOST POLITE offer using 'some' when speaking to a coworker in the storage room.",
+        options: {
+          A: "Would you like some butter for the cake batter?",
+          B: "Would you like any butter for the cake batter?",
+          C: "Take much butter now!",
+          D: "Have you some butter?"
+        },
+        correct: ["A"],
+        wrongReasons: {
+          B: "Dalam kalimat TAWARAN sopan ('Would you like...?'), Chapter 22 mengajarkan memakai 'some', bukan 'any'.",
+          C: "'Take much butter now!' terlalu kasar dan 'much' tidak natural pada kalimat perintah positif.",
+          D: "Pertanyaan kepemilikan/stok biasa lebih tepat memakai 'Do you have any butter?', bukan tawaran 'Would you like...'."
+        },
+        ruleHint: "Ingat pengecualian di tabel Some and Any Chapter 22: meskipun berbentuk tanda tanya, kalimat TAWARAN (Offer: 'Would you like...?') menggunakan kata yang sama dengan kalimat positif.",
+        correctFeedback: "Tepat! Pada tawaran sopan ('Would you like...?'), kita menggunakan 'some' ('Would you like some butter?')."
+      },
+      {
+        id: 18, chapter: 22, type: "pgk",
+        question: "Select ALL grammatically CORRECT sentences using 'some', 'any', 'much', or 'many'.",
+        options: {
+          A: "How much milk do we have in the chiller?",
+          B: "How many cake boxes have we received?",
+          C: "There aren't some chocolate chips left.",
+          D: "We have some flour in the storage room."
+        },
+        correct: ["A", "B", "D"],
+        wrongReasons: {
+          C: "'There aren't...' adalah kalimat NEGATIF, sehingga tidak boleh memakai 'some' ('aren't some'), melainkan 'any'."
+        },
+        ruleHint: "Periksa: 'much' + uncountable (milk), 'many' + countable plural (boxes), 'some' untuk positif, dan 'any' untuk negatif/tanya.",
+        correctFeedback: "Mantap! A, B, dan D semuanya tepat secara grammar countable/uncountable dan some/any."
+      },
+      {
+        id: 19, chapter: 22, type: "pgk",
+        question: "Select ALL grammatically CORRECT Present Perfect questions and reports about deliveries.",
+        options: {
+          A: "Have you checked the expiry dates on the milk cartons?",
+          B: "Has the supplier delivered the butter yet?",
+          C: "She have counted all the packaging boxes.",
+          D: "We have found two damaged containers in the delivery."
+        },
+        correct: ["A", "B", "D"],
+        wrongReasons: {
+          C: "Subjek tunggal 'She' harus berpasangan dengan 'has', bukan 'have' ('She have counted')."
+        },
+        ruleHint: "Pastikan kesesuaian 'Have' (I/you/we/they) vs 'Has' (he/she/it/the supplier) + Past Participle (V3).",
+        correctFeedback: "Benar! A, B, dan D menggunakan Present Perfect dengan tepat untuk laporan pengiriman."
+      },
+      {
+        id: 20, chapter: 22, type: "pgk",
+        question: "Select ALL nouns that are generally UNCOUNTABLE (paired with 'much') in Chapter 22.",
+        options: {
+          A: "sugar",
+          B: "cream",
+          C: "butter",
+          D: "cake boxes"
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "'cake boxes' adalah kata benda jamak yang BISA DIHITUNG (countable plural: one box, ten boxes), sehingga dipasangkan dengan 'many', bukan 'much'."
+        },
+        ruleHint: "Ingat tabel Much vs Many di Chapter 22: bahan dasar cair/bubuk/lemak tanpa satuan wadah adalah uncountable, sedangkan wadahnya (boxes, bags, containers) adalah countable.",
+        correctFeedback: "Tepat! Sugar, cream, dan butter termasuk uncountable nouns (dipakai dengan 'much')."
+      },
+
+      // ==================== CHAPTER 23: PROFESSIONAL CV & SELF-INTRO VIDEO (Soal 21–30) ====================
+      {
+        id: 21, chapter: 23, type: "pg",
+        question: "Choose the sentence that uses the CORRECT tenses for introducing yourself in a job application:\n'My name ______ Rina. I ______ from vocational school in 2025, and I ______ basic pastry training.'",
+        options: {
+          A: "is / graduate / have complete",
+          B: "is / graduated / have completed",
+          C: "was / graduated / completed have",
+          D: "is / have graduated / completed"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "'in 2025' adalah waktu lampau spesifik (perlu V2, bukan 'graduate'), dan setelah 'have' perlu V3 (bukan 'complete').",
+          C: "Nama saat ini memakai Simple Present ('is', bukan 'was'), dan urutan 'completed have' terbalik.",
+          D: "Karena ada keterangan tahun lampau spesifik 'in 2025', tidak cocok memakai Present Perfect ('have graduated') pada klausa tersebut."
+        },
+        ruleHint: "Cocokkan 3 tenses Chapter 23: info diri saat ini (Simple Present) → kelulusan dengan tahun spesifik 'in 2025' (Simple Past V2) → kualifikasi pelatihan relevan saat ini (Present Perfect: have + V3).",
+        correctFeedback: "Sempurna! 'My name is Rina' (Present), 'graduated ... in 2025' (Past), dan 'have completed' (Present Perfect)."
+      },
+      {
+        id: 22, chapter: 23, type: "pg",
+        question: "Which statement is MORE PROFESSIONAL to write on a Pastry Assistant CV (Chapter 23)?",
+        options: {
+          A: "I can cook many things and I am a good person.",
+          B: "I want money and I worked somewhere before.",
+          C: "I can prepare cakes, cookies, and basic desserts. I completed a 3-month internship at a local bakery.",
+          D: "My English is bad, so please don't ask hard questions."
+        },
+        correct: ["C"],
+        wrongReasons: {
+          A: "'cook many things' dan 'a good person' terlalu umum/kurang profesional untuk CV.",
+          B: "'I want money' dan 'worked somewhere' tidak spesifik dan memberi kesan kurang profesional bagi perekrut.",
+          D: "Alih-alih menulis 'My English is bad', Chapter 23 menyarankan kalimat positif seperti 'I am improving my English communication skills.'"
+        },
+        ruleHint: "Ingat Activity 4 (Strong vs Weak CV Statements) di Chapter 23: pilih pernyataan yang spesifik tentang keahlian pastry dan pengalaman magang yang jelas.",
+        correctFeedback: "Benar! Menyebutkan produk yang bisa dibuat serta pengalaman magang secara spesifik jauh lebih profesional."
+      },
+      {
+        id: 23, chapter: 23, type: "pg",
+        question: "In which section of a professional CV should you put 'Pastry Intern – Local Bakery (Duration: 3 months)'?",
+        options: {
+          A: "Personal Information",
+          B: "Work Experience / Internship",
+          C: "Languages",
+          D: "References"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "'Personal Information' berisi nama lengkap, nomor HP, email, kewarganegaraan, dan kota/negara.",
+          C: "'Languages' berisi bahasa yang dikuasai dan tingkat kemampuannya (mis. Indonesian – Native, English – Basic).",
+          D: "'References' berisi informasi kontak pemberi referensi atau tulisan 'Available upon request'."
+        },
+        ruleHint: "Cek Basic CV Structure di Chapter 23: pengalaman magang di toko roti selama 3 bulan masuk ke bagian riwayat kerja/magang.",
+        correctFeedback: "Tepat! Pengalaman magang di bakery masuk ke bagian 'Work Experience / Internship'."
+      },
+      {
+        id: 24, chapter: 23, type: "pg",
+        question: "Expressing Career Goals: Choose the grammatically CORRECT sentence to explain your career goal in a CV or self-introduction.",
+        options: {
+          A: "I would like to work in an international hotel.",
+          B: "I want becoming a professional pastry chef.",
+          C: "I hope improving my pastry skills.",
+          D: "I would like work in a famous bakery."
+        },
+        correct: ["A"],
+        wrongReasons: {
+          B: "Setelah 'want', gunakan 'to + V1', bukan verb-ing ('becoming').",
+          C: "Setelah 'hope', gunakan 'to + V1', bukan verb-ing ('improving').",
+          D: "Setelah 'would like' sebelum kata kerja ('work'), WAJIB menyertakan kata 'to'."
+        },
+        ruleHint: "Ingat pola Expressing Career Goals di Chapter 23: 'want / would like / hope + TO + BASE VERB'.",
+        correctFeedback: "Benar! 'I would like to work in an international hotel.' tepat mengikuti pola 'would like + to + V1'."
+      },
+      {
+        id: 25, chapter: 23, type: "pg",
+        question: "What is the recommended format and duration for your International Job Application Portfolio (CV and Self-Introduction Video) in Chapter 23?",
+        options: {
+          A: "CV in TXT format; Video 10–15 minutes long.",
+          B: "CV in PDF format; Video 1–2 minutes long in MP4 format.",
+          C: "CV handwritten on paper; Video without any sound.",
+          D: "CV in MP4 format; Video 10 seconds only."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "CV profesional sebaiknya disimpan sebagai PDF (bukan TXT), dan video 10–15 menit terlalu panjang bagi perekrut.",
+          C: "Lamaran internasional memerlukan file digital yang rapi dan video bersuara jelas.",
+          D: "Format file-nya tertukar—MP4 adalah format video, bukan CV, dan 10 detik terlalu singkat untuk perkenalan lengkap."
+        },
+        ruleHint: "Cek bagian Home Practice & Video Guidelines di Chapter 23: format dokumen standar untuk CV dan durasi singkat ideal (menit) + format video perkenalan.",
+        correctFeedback: "Tepat! CV disimpan dalam format PDF (`FullName_CV.pdf`) dan video perkenalan berdurasi 1–2 menit dalam format MP4."
+      },
+      {
+        id: 26, chapter: 23, type: "pg",
+        question: "You want to apply for an overseas pastry job, and a friend suggests adding a fake 5-star hotel certificate to your CV so you get hired faster. According to Chapter 23, what MUST you do?",
+        options: {
+          A: "Add the fake certificate to look impressive.",
+          B: "Be honest and only include real personal information and genuine qualifications.",
+          C: "Claim your English is Native even if it is Basic.",
+          D: "Copy another applicant's employment history."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Chapter 23 secara tegas mengingatkan: 'Never include skills, certificates, or work experience that you do not have.'",
+          C: "Memalsukan tingkat kemampuan bahasa akan ketahuan saat wawancara dan melanggar integritas.",
+          D: "Menyalin riwayat kerja orang lain adalah ketidakjujuran yang tidak boleh dilakukan pada CV."
+        },
+        ruleHint: "Ingat catatan penting ('Important') di Chapter 23 tentang kejujuran dalam menulis CV dan kualifikasi.",
+        correctFeedback: "Benar sekali! Kejujuran adalah prinsip utama CV profesional—hanya cantumkan kualifikasi dan pengalaman yang asli."
+      },
+      {
+        id: 27, chapter: 23, type: "pg",
+        question: "Which personal strength adjective means 'dapat diandalkan' (someone the chef and team can always trust to do the job well)?",
+        options: {
+          A: "Reliable",
+          B: "Patient",
+          C: "Friendly",
+          D: "Creative"
+        },
+        correct: ["A"],
+        wrongReasons: {
+          B: "'Patient' berarti sabar, bukan dapat diandalkan.",
+          C: "'Friendly' berarti ramah, bukan dapat diandalkan.",
+          D: "'Creative' berarti kreatif (punya ide baru, misal dekorasi), bukan dapat diandalkan."
+        },
+        ruleHint: "Cek Word Bank Personal Strengths di Chapter 23: cari kata sifat yang terjemahannya 'dapat diandalkan'.",
+        correctFeedback: "Tepat! 'Reliable' berarti dapat diandalkan."
+      },
+      {
+        id: 28, chapter: 23, type: "pgk",
+        question: "Select ALL good guidelines for recording a PROFESSIONAL SELF-INTRODUCTION VIDEO (Chapter 23).",
+        options: {
+          A: "Wear clean, neat, and professional clothing.",
+          B: "Choose a quiet, well-lit place with a simple, clean background.",
+          C: "Look at the camera, smile naturally, and speak clearly.",
+          D: "Read every single word from a paper without looking at the camera."
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "Video Recording Guidelines Chapter 23 menyarankan: 'Avoid reading every word from a paper'—tatap kamera agar terlihat percaya diri dan natural."
+        },
+        ruleHint: "Cek panduan Before & During Recording di Chapter 23 tentang pakaian, pencahayaan, latar belakang, dan kontak mata dengan kamera.",
+        correctFeedback: "Mantap! Pakaian rapi, tempat tenang & terang, serta kontak mata dan senyum natural membuat video perkenalan jauh lebih meyakinkan."
+      },
+      {
+        id: 29, chapter: 23, type: "pgk",
+        question: "Select ALL grammatically CORRECT sentences describing education, training, or strengths.",
+        options: {
+          A: "I am hardworking, responsible, and willing to learn.",
+          B: "I have attended a basic pastry training program.",
+          C: "I studied Culinary Arts at a vocational high school.",
+          D: "I have receive a training certificate."
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "Setelah 'have' dalam Present Perfect, kata kerja 'receive' harus diubah ke bentuk V3 ('received'), bukan V1."
+        },
+        ruleHint: "Periksa tenses di setiap opsi: Simple Present ('I am + adj'), Simple Past ('studied'), dan Present Perfect ('have + V3').",
+        correctFeedback: "Benar! A, B, dan C semuanya tepat secara grammar untuk profil CV dan perkenalan diri."
+      },
+      {
+        id: 30, chapter: 23, type: "pgk",
+        question: "Select ALL items that belong in the 'PERSONAL INFORMATION' section at the top of a CV.",
+        options: {
+          A: "Full name",
+          B: "Phone number and email address",
+          C: "Nationality, city, and country",
+          D: "Cake decorating and measuring ingredients"
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "'Cake decorating and measuring ingredients' masuk ke bagian SKILLS (keahlian pastry), bukan Personal Information."
+        },
+        ruleHint: "Bedakan data kontak & identitas diri (Personal Information) dengan daftar keahlian kerja (Skills) pada struktur CV Chapter 23.",
+        correctFeedback: "Tepat! Nama lengkap, nomor HP/email, serta kewarganegaraan & domisili masuk di bagian Personal Information."
+      },
+
+      // ==================== CHAPTER 24: JOB INTERVIEW (Soal 31–40) ====================
+      {
+        id: 31, chapter: 24, type: "pg",
+        question: "Present Perfect vs Simple Past in an Interview:\n'I ______ basic cake decoration, and I ______ my internship at a local bakery last year.'",
+        options: {
+          A: "have learned / completed",
+          B: "learned / have completed",
+          C: "have learn / complete",
+          D: "am learning / have completed"
+        },
+        correct: ["A"],
+        wrongReasons: {
+          B: "Klausa kedua memiliki keterangan waktu lampau spesifik ('last year'), sehingga tidak boleh memakai Present Perfect ('have completed').",
+          C: "Setelah 'have' wajib V3 ('learned'), dan 'last year' wajib memakai V2 ('completed').",
+          D: "'last year' adalah waktu lampau yang sudah selesai, jadi harus memakai Simple Past (V2), bukan Present Perfect."
+        },
+        ruleHint: "Ingat perbandingan penting Chapter 24: pengalaman TANPA waktu lampau spesifik memakai Present Perfect ('have + V3'), sedangkan pengalaman DENGAN waktu spesifik ('last year', 'in 2025') memakai Simple Past (V2).",
+        correctFeedback: "Benar! 'I have learned...' (tanpa waktu spesifik) dan 'I completed ... last year' (waktu lampau spesifik)."
+      },
+      {
+        id: 32, chapter: 24, type: "pg",
+        question: "Future Forms (Promise vs Plan vs Arrangement):\n1. Promise if hired: 'I ______ work hard and follow kitchen rules.'\n2. Personal intention: 'I ______ improve my English communication.'\n3. Fixed schedule: 'I ______ the recruiter next Monday.'",
+        options: {
+          A: "am going to / will / meet",
+          B: "will / am going to / am meeting",
+          C: "will / going to / meeting",
+          D: "am meeting / will / going to"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Urutan fungsinya kurang tepat, dan 'meet' saja tanpa 'am + -ing' bukan bentuk Present Continuous untuk jadwal pasti ('next Monday').",
+          C: "'going to' dan 'meeting' di kalimat 2 dan 3 kehilangan kata bantu 'am' setelah subjek 'I'.",
+          D: "Fungsinya tertukar: janji saat wawancara memakai 'will', rencana/niat memakai 'be going to', dan jadwal temu ('next Monday') memakai Present Continuous."
+        },
+        ruleHint: "Ingat 3 Future Forms di Chapter 24: (1) Janji/keputusan = 'will + V1'; (2) Rencana/niat = 'am/is/are going to + V1'; (3) Jadwal temu pasti (next Monday) = 'am/is/are + V-ing'.",
+        correctFeedback: "Sempurna! 'I will work hard' (janji), 'I am going to improve' (rencana), dan 'I am meeting ... next Monday' (jadwal pasti)."
+      },
+      {
+        id: 33, chapter: 24, type: "pg",
+        question: "During an international hotel interview, the HR interviewer asks a question you didn't quite catch. What is the MOST PROFESSIONAL expression to use?",
+        options: {
+          A: "Huh? Say again!",
+          B: "Could you repeat the question, please?",
+          C: "Skip this question, please.",
+          D: "I don't understand English."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "'Huh? Say again!' terlalu kasar dan informal untuk wawancara kerja profesional.",
+          C: "Meminta melewati pertanyaan tanpa berusaha memahaminya memberi kesan kurang siap.",
+          D: "Pernyataan negatif ini merendahkan diri sendiri; jauh lebih baik meminta pewawancara mengulang atau menjelaskan dengan sopan."
+        },
+        ruleHint: "Cek tabel Useful Interview Expressions Chapter 24: gunakan permintaan sopan dengan 'Could you... , please?' untuk meminta pengulangan pertanyaan.",
+        correctFeedback: "Benar! 'Could you repeat the question, please?' sopan, tenang, dan profesional."
+      },
+      {
+        id: 34, chapter: 24, type: "pg",
+        question: "In Chapter 24, the STAR strategy helps you answer interview questions about past experiences. What does STAR stand for?",
+        options: {
+          A: "Salary, Time, Age, Reference",
+          B: "Situation, Task, Action, Result",
+          C: "Skill, Training, Attitude, Resume",
+          D: "Start, Talk, Answer, Repeat"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Gaji, waktu, usia, dan referensi bukan struktur bercerita pengalaman kerja STAR.",
+          C: "Meskipun kata-kata tersebut relevan dengan karir, itu bukan kepanjangan metode STAR.",
+          D: "Ini bukan kepanjangan metode STAR yang diajarkan pada Speaking Strategy Chapter 24."
+        },
+        ruleHint: "Ingat Speaking Strategy: STAR – Simple Version di Chapter 24: (S) di mana/kapan terjadi → (T) apa tanggung jawabmu → (A) apa yang kamu lakukan → (R) apa hasilnya.",
+        correctFeedback: "Tepat! STAR adalah singkatan dari Situation, Task, Action, dan Result."
+      },
+      {
+        id: 35, chapter: 24, type: "pg",
+        question: "Situational Interview Question:\nInterviewer: 'What will you do if you make a mistake in a recipe during production?'\nChoose the BEST professional answer from Chapter 24:",
+        options: {
+          A: "I will hide the cake so the chef does not see it.",
+          B: "I will blame my coworker.",
+          C: "I will inform my supervisor, ask for instructions, and learn from my mistake.",
+          D: "I will leave the kitchen immediately."
+        },
+        correct: ["C"],
+        wrongReasons: {
+          A: "Menyembunyikan kesalahan resep bisa merugikan pelanggan dan melanggar standar kualitas.",
+          B: "Menyalahkan rekan kerja menunjukkan sikap tidak bertanggung jawab dan merusak kerja tim.",
+          D: "Meninggalkan dapur saat ada masalah menunjukkan ketidakprofesionalan."
+        },
+        ruleHint: "Ingat Sample Situational Questions di Chapter 24: jawaban wawancara yang baik selalu menunjukkan kejujuran, komunikasi segera dengan supervisor, dan kemauan belajar.",
+        correctFeedback: "Mantap! Melapor ke supervisor, meminta arahan, dan belajar dari kesalahan menunjukkan integritas tinggi."
+      },
+      {
+        id: 36, chapter: 24, type: "pg",
+        question: "Situational Interview Question:\nInterviewer: 'What will you do if you have a problem with a kitchen tool or machine?'\nWhat is the safest and most professional answer?",
+        options: {
+          A: "I will keep using the broken machine until it stops completely.",
+          B: "I will stop using it and inform my supervisor.",
+          C: "I will throw the machine into the rubbish bin.",
+          D: "I will not tell anyone."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Tetap memakai alat rusak berbahaya bagi keselamatan diri maupun hasil produk.",
+          C: "Membuang peralatan dapur perusahaan tanpa izin tidak boleh dilakukan.",
+          D: "Diam saja membahayakan rekan kerja lain yang mungkin akan memakai alat rusak tersebut."
+        },
+        ruleHint: "Ingat Question 4 pada Sample Situational Questions Chapter 24: utamakan keselamatan (hentikan pemakaian) lalu laporkan ke atasan.",
+        correctFeedback: "Benar! 'I will stop using it and inform my supervisor.' adalah prosedur keselamatan kerja yang tepat."
+      },
+      {
+        id: 37, chapter: 24, type: "pg",
+        question: "In job interview vocabulary, what is the difference between an 'INTERVIEWER' and an 'APPLICANT'?",
+        options: {
+          A: "The interviewer asks questions for the company; the applicant is the person applying for the job.",
+          B: "The interviewer is applying for the job; the applicant owns the hotel.",
+          C: "Both words mean 'salary and contract'.",
+          D: "The interviewer is a customer buying cakes."
+        },
+        correct: ["A"],
+        wrongReasons: {
+          B: "Terbalik! Akhiran '-er' pada 'interviewer' merujuk pada pewawancara (pihak perusahaan), bukan pelamar.",
+          C: "Keduanya merujuk pada orang yang terlibat dalam wawancara, bukan gaji atau kontrak.",
+          D: "Pelanggan yang membeli kue adalah 'customer', bukan 'interviewer'."
+        },
+        ruleHint: "Cek Word Bank Interview Vocabulary Chapter 24: bedakan 'pewawancara' dan 'pelamar kerja'.",
+        correctFeedback: "Tepat! 'Interviewer' adalah pewawancara dari perusahaan, sedangkan 'applicant' adalah pelamar kerja."
+      },
+      {
+        id: 38, chapter: 24, type: "pgk",
+        question: "Select ALL grammatically CORRECT interview sentences comparing Present Perfect and Simple Past.",
+        options: {
+          A: "I attended pastry training in 2025.",
+          B: "She has made many birthday cakes.",
+          C: "We have completed our internship yesterday.",
+          D: "Have you ever worked in a bakery?"
+        },
+        correct: ["A", "B", "D"],
+        wrongReasons: {
+          C: "Ada keterangan waktu lampau spesifik 'yesterday', sehingga kalimat ini TIDAK boleh memakai Present Perfect ('have completed'), harus Simple Past ('completed')."
+        },
+        ruleHint: "Cek kata penanda waktu lampau spesifik ('in 2025', 'yesterday'): jika ada waktu selesai yang spesifik, gunakan Simple Past (V2); jika membicarakan pengalaman umum tanpa waktu pasti, gunakan Present Perfect.",
+        correctFeedback: "Benar! A (Simple Past dengan 'in 2025'), B (Present Perfect), dan D (pertanyaan pengalaman 'Have you ever...?') semuanya tepat."
+      },
+      {
+        id: 39, chapter: 24, type: "pgk",
+        question: "Select ALL grammatically CORRECT Future Form sentences for discussing career goals and interview arrangements.",
+        options: {
+          A: "I will do my best if I get this position.",
+          B: "I am going to apply for a pastry assistant position.",
+          C: "I am attending an English interview next Monday.",
+          D: "I will improving my baking skills."
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "Setelah modal 'will', kata kerja utama wajib bentuk dasar (V1), bukan verb-ing ('improving')."
+        },
+        ruleHint: "Periksa 3 rumus masa depan Chapter 24: 'will + BASE VERB', 'be going to + BASE VERB', dan 'be + V-ing' (untuk jadwal pasti seperti next Monday).",
+        correctFeedback: "Mantap! A, B, dan C semuanya menggunakan Future Forms dengan akurat."
+      },
+      {
+        id: 40, chapter: 24, type: "pgk",
+        question: "Select ALL professional and polite expressions you can use during a job interview (Chapter 24).",
+        options: {
+          A: "Let me think for a moment.",
+          B: "I am willing to learn new techniques.",
+          C: "Thank you for your time. Have a nice day.",
+          D: "This interview is boring, let's finish now."
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "Mengatakan wawancara membosankan sangat tidak sopan dan hampir pasti membuat pelamar gagal."
+        },
+        ruleHint: "Pilih semua ungkapan profesional dari tabel Useful Interview Expressions di Chapter 24.",
+        correctFeedback: "Tepat! A, B, dan C menunjukkan sikap tenang, mau belajar, dan sopan saat wawancara."
+      },
+
+      // ==================== CHAPTER 25: INTEGRATED PASTRY KITCHEN REVIEW (Soal 41–50) ====================
+      {
+        id: 41, chapter: 25, type: "pg",
+        question: "Integrated Grammar Review:\n'Every morning, the pastry chef ______ the recipes. Right now, she ______ the chocolate cake, and we ______ all the ingredients.'",
+        options: {
+          A: "checks / is decorating / have prepared",
+          B: "check / decorating / have prepare",
+          C: "is checking / decorates / prepared",
+          D: "checks / are decorating / has prepared"
+        },
+        correct: ["A"],
+        wrongReasons: {
+          B: "Subjek tunggal 'the pastry chef' butuh '-s' ('checks'), 'decorating' kehilangan 'is', dan setelah 'have' butuh V3 ('prepared').",
+          C: "Penanda rutinitas 'Every morning' memakai Simple Present, sedangkan 'Right now' memakai Present Continuous (bukan terbalik).",
+          D: "Subjek tunggal 'she' tidak memakai 'are', dan subjek jamak 'we' tidak memakai 'has'."
+        },
+        ruleHint: "Cocokkan 3 tenses berbeda di Chapter 25: 'Every morning' (Simple Present tunggal) → 'Right now' (Present Continuous 'she') → hasil siap sekarang (Present Perfect 'we').",
+        correctFeedback: "Luar biasa! 'checks' (rutinitas), 'is decorating' (sedang berlangsung), dan 'have prepared' (sudah selesai)."
+      },
+      {
+        id: 42, chapter: 25, type: "pg",
+        question: "Busy Production Dialogue (Chapter 25): The hotel orders 50 chocolate cupcakes. Required eggs = 30 pieces; Available eggs = 20 pieces. Required chocolate = 1.5 kg; Available chocolate = 1 kg.\nWhat should the inventory recorder request from the supplier?",
+        options: {
+          A: "We need twenty more eggs and two kilograms of chocolate.",
+          B: "We need ten more eggs and half a kilogram of chocolate.",
+          C: "We have enough eggs and enough chocolate.",
+          D: "We need thirty more eggs and one kilogram of chocolate."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Kekurangan telur hanya 30 - 20 = 10 butir (bukan 20), dan cokelat hanya kurang 1.5 - 1 = 0.5 kg (bukan 2 kg).",
+          C: "Stok telur (20 < 30) dan cokelat (1 kg < 1.5 kg) keduanya masih kurang.",
+          D: "Kita sudah punya 20 telur dan 1 kg cokelat, jadi tidak perlu memesan seluruh jumlah awal lagi."
+        },
+        ruleHint: "Hitung selisih Required minus Available dari simulasi Chapter 25: (30 - 20) telur dan (1.5 - 1) kg cokelat (0.5 kg = half a kilogram).",
+        correctFeedback: "Tepat! Selisihnya adalah 10 butir telur lagi ('ten more eggs') dan 0.5 kg cokelat ('half a kilogram of chocolate')."
+      },
+      {
+        id: 43, chapter: 25, type: "pg",
+        question: "Integrated Grammar Review (Activity 1, Ch. 25): Choose the sentence with ZERO grammar errors.",
+        options: {
+          A: "Could you repeats the instructions, please?",
+          B: "I don't have some butter in the chiller.",
+          C: "The cake is baked in the oven, and we must follow food safety rules.",
+          D: "How much eggs do we need for 50 cupcakes?"
+        },
+        correct: ["C"],
+        wrongReasons: {
+          A: "Setelah 'Could you', kata kerja tidak boleh ditambah '-s' ('repeats').",
+          B: "Kalimat negatif ('don't have') harus memakai 'any', bukan 'some'.",
+          D: "'eggs' adalah countable plural, sehingga harus memakai 'How many', bukan 'How much'."
+        },
+        ruleHint: "Periksa 4 aturan inti review Chapter 25: 'Could + V1', 'negatif + any', 'How many + countable plural', dan kalimat pasif + 'must + V1'.",
+        correctFeedback: "Benar! 'The cake is baked in the oven, and we must follow food safety rules.' 100% akurat."
+      },
+      {
+        id: 44, chapter: 25, type: "pg",
+        question: "Quality & Product Comparison (Chapter 25):\n'This sponge cake is ______ than that cake, and the chocolate cream is ______ than the vanilla cream.'",
+        options: {
+          A: "more soft / more thick",
+          B: "softer / thicker",
+          C: "softest / thickest",
+          D: "soft / thick"
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "'soft' dan 'thick' adalah kata sifat pendek 1 suku kata, sehingga tidak menggunakan 'more'.",
+          C: "Akhiran '-est' adalah Superlative, tidak cocok dipasangkan dengan kata 'than' yang membandingkan 2 benda.",
+          D: "Bentuk dasar ('soft / thick') belum diubah ke bentuk Comparative sebelum 'than'."
+        },
+        ruleHint: "Ingat poin 9 Integrated Grammar Review Chapter 25: kata sifat pendek 1 suku kata + '-er' + 'than'.",
+        correctFeedback: "Tepat! 'softer than' dan 'thicker than' adalah bentuk komparatif yang benar."
+      },
+      {
+        id: 45, chapter: 25, type: "pg",
+        question: "During pastry production, you notice the stand mixer suddenly stops working and smells strange. According to Chapter 25's workplace communication practice, what is the BEST report to your supervisor?",
+        options: {
+          A: "I kept forcing the mixer to run until it broke.",
+          B: "The mixer is not working. I stopped using it and I have informed the supervisor.",
+          C: "The mixer is delicious and moist.",
+          D: "I didn't tell anyone about the broken mixer."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Memaksa mesin rusak tetap menyala sangat berbahaya bagi keselamatan kerja.",
+          C: "Kata sifat 'delicious and moist' digunakan untuk makanan, bukan mesin mixer.",
+          D: "Tidak melapor saat ada kerusakan alat melanggar prosedur keselamatan dapur."
+        },
+        ruleHint: "Cek Situation 3 (Reporting a Problem) di Chapter 25: jelaskan masalah alatnya, hentikan pemakaian, dan laporkan ke supervisor.",
+        correctFeedback: "Profesional! Menjelaskan alat tidak berfungsi, menghentikan pemakaian, dan melapor ke supervisor adalah langkah paling aman."
+      },
+      {
+        id: 46, chapter: 25, type: "pg",
+        question: "A customer at the hotel café asks: 'Does this chocolate cupcake contain milk or eggs?' Which response follows Chapter 25's integrated customer service standard?",
+        options: {
+          A: "I don't know, just eat it.",
+          B: "Yes, the cupcakes contain milk and eggs. Let me check the full ingredient information for you.",
+          C: "No, it is burnt and undercooked.",
+          D: "We haven't baked the mixer yet."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Sangat tidak bertanggung jawab bagi pelanggan yang mungkin memiliki alergi makanan.",
+          C: "'burnt and undercooked' adalah masalah kualitas produk, tidak menjawab pertanyaan kandungan bahan.",
+          D: "Kalimat ini tidak masuk akal ('baked the mixer')."
+        },
+        ruleHint: "Cek Stage 5 Simulation Chapter 25: jawab jujur bahan/alergen yang terkandung ('contain...') dan tawarkan memeriksa daftar bahan lengkap jika diperlukan.",
+        correctFeedback: "Benar! Jawaban ini jelas, jujur tentang alergen (milk & eggs), dan ramah terhadap pelanggan."
+      },
+      {
+        id: 47, chapter: 25, type: "pg",
+        question: "Stage 7 – Final Production Report: Your team has finished baking, checking quality, and packaging 50 chocolate cupcakes for a 3:00 PM delivery. Which final report to the Head Chef is the MOST COMPLETE?",
+        options: {
+          A: "Chef, cupcakes are done maybe.",
+          B: "Chef, we have completed the order for fifty chocolate cupcakes. We have checked the product quality and packaging. The order is ready for delivery at 3:00 PM.",
+          C: "Chef, we will measure the flour tomorrow.",
+          D: "Chef, we don't have any cupcakes today."
+        },
+        correct: ["B"],
+        wrongReasons: {
+          A: "Terlalu ragu-ragu ('maybe') dan tidak melaporkan pengecekan kualitas, kemasan, maupun waktu pengiriman.",
+          C: "Kalimat ini tentang rencana besok, bukan laporan penyelesaian pesanan hari ini.",
+          D: "Bertentangan dengan situasi bahwa 50 cupcakes sudah selesai diproduksi dan dikemas."
+        },
+        ruleHint: "Ingat Stage 7 Final Report Chapter 25: gunakan Present Perfect ('we have completed / we have checked') untuk melaporkan pekerjaan tuntas + konfirmasi siap kirim sesuai jamnya.",
+        correctFeedback: "Sempurna! Laporan akhir ini padat, menggunakan Present Perfect dengan tepat, dan mencakup kualitas, kemasan, serta jam pengiriman."
+      },
+      {
+        id: 48, chapter: 25, type: "pgk",
+        question: "Select ALL workplace situations that are CORRECTLY matched with their appropriate English expression (Chapter 25).",
+        options: {
+          A: "You do not understand the chef → Could you repeat that, please?",
+          B: "You need more ingredients → We need more flour.",
+          C: "You have finished production → We have completed the order.",
+          D: "You find damaged equipment → I will hide it in the storage room."
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "Saat menemukan peralatan rusak, kamu harus melaporkannya ke supervisor ('I will report it to the supervisor'), BUKAN menyembunyikannya!"
+        },
+        ruleHint: "Cek Activity 2 (Match the Workplace Situations) di Chapter 25 untuk mencocokkan situasi dapur dengan respons profesionalnya.",
+        correctFeedback: "Benar! A, B, dan C adalah padanan situasi kerja dan ungkapan bahasa Inggris yang tepat."
+      },
+      {
+        id: 49, chapter: 25, type: "pgk",
+        question: "Select ALL grammatically CORRECT sentences from the Integrated Grammar Review (Chapter 25).",
+        options: {
+          A: "First, measure the ingredients carefully. Then, mix the batter.",
+          B: "We haven't finished the cake decoration yet.",
+          C: "I will contact the supplier to request ten more eggs.",
+          D: "The pastry chef check the cake quality every morning."
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "Pada Simple Present ('every morning'), subjek tunggal 'The pastry chef' mewajibkan akhiran '-s' pada kata kerja ('checks', bukan 'check')."
+        },
+        ruleHint: "Periksa 4 struktur grammar sekaligus: Imperatives (V1), Present Perfect negatif ('haven't + V3 + yet'), Future ('will + V1'), dan Simple Present subjek tunggal (+s).",
+        correctFeedback: "Hebat! A, B, dan C semuanya benar secara tata bahasa."
+      },
+      {
+        id: 50, chapter: 25, type: "pgk",
+        question: "Select ALL vocabulary items from Chapter 25 that are CORRECTLY matched with their Indonesian meaning.",
+        options: {
+          A: "Undercooked → Kurang matang",
+          B: "Complaint → Keluhan",
+          C: "Refund → Pengembalian dana",
+          D: "Knead the dough → Mengemas produk"
+        },
+        correct: ["A", "B", "C"],
+        wrongReasons: {
+          D: "'Knead the dough' berarti MENGULENI ADONAN, sedangkan mengemas produk adalah 'package the product'."
+        },
+        ruleHint: "Cek kembali Word Bank Integrated Pastry Kitchen Vocabulary di Chapter 25 (Product Quality, Customer Service, dan Kitchen Activities).",
+        correctFeedback: "Tepat sekali! Undercooked (kurang matang), Complaint (keluhan), dan Refund (pengembalian dana) semuanya benar."
+      }
+    ];
+
+    // ==================== STATE & AUTO-SAVE LOCALSTORAGE ====================
+    const STORAGE_KEY = "quiz_book2_ch21_25_v1";
+
+    /**
+     * progress[id] = {
+     *   status: 'unanswered' | 'first_try' | 'corrected' | 'wrong',
+     *   attempts: number,
+     *   selected: string[] // e.g. ['B'] or ['A','B','D']
+     * }
+     */
+    const state = {
+      filter: "all",          // 'all' | 'ch21'..'ch25' | 'pg' | 'pgk' | 'unsolved'
+      activeIds: [],          // daftar ID soal sesuai filter aktif
+      currentIndex: 0,        // indeks saat ini di dalam activeIds
+      selection: [],          // pilihan huruf user saat ini ['A'] atau ['A','C']
+      checkedWrong: false,    // penanda merah lembut tepat setelah salah cek
+      progress: {},           // data progres tersimpan
+      lastQuestionId: 1,      // nomor soal terakhir dibuka
+      view: "quiz"            // 'quiz' | 'eval'
+    };
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === "object") {
+            state.progress = parsed.progress || {};
+            state.lastQuestionId = parsed.lastQuestionId || 1;
+            state.filter = parsed.filter || "all";
+          }
+        }
+      } catch (err) {
+        console.warn("Gagal membaca localStorage:", err);
+      }
+    }
+
+    function saveState() {
+      try {
+        const q = getCurrentQuestion();
+        if (q) state.lastQuestionId = q.id;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          progress: state.progress,
+          lastQuestionId: state.lastQuestionId,
+          filter: state.filter
+        }));
+      } catch (err) {
+        console.warn("Gagal menyimpan localStorage:", err);
+      }
+    }
+
+    function getProg(id) {
+      return state.progress[id] || { status: "unanswered", attempts: 0, selected: [] };
+    }
+
+    function isSolved(status) {
+      return status === "first_try" || status === "corrected";
+    }
+
+    // ==================== REFERENSI DOM ====================
+    const headerScoreBadge = document.getElementById("headerScoreBadge");
+    const globalProgressBar = document.getElementById("globalProgressBar");
+    const openEvalBtn = document.getElementById("openEvalBtn");
+    const openDrawerBtn = document.getElementById("openDrawerBtn");
+
+    const quizView = document.getElementById("quizView");
+    const evalView = document.getElementById("evalView");
+    const stickyBottomBar = document.getElementById("stickyBottomBar");
+
+    const emptyFilterCard = document.getElementById("emptyFilterCard");
+    const emptyToEvalBtn = document.getElementById("emptyToEvalBtn");
+    const emptyToAllBtn = document.getElementById("emptyToAllBtn");
+
+    const questionCard = document.getElementById("questionCard");
+    const qChapterBadge = document.getElementById("qChapterBadge");
+    const qTypeBadge = document.getElementById("qTypeBadge");
+    const qAttemptBadge = document.getElementById("qAttemptBadge");
+    const qNumberLabel = document.getElementById("qNumberLabel");
+    const questionText = document.getElementById("questionText");
+    const pgkCallout = document.getElementById("pgkCallout");
+    const optionsContainer = document.getElementById("optionsContainer");
+    const feedbackCard = document.getElementById("feedbackCard");
+
+    const prevBtn = document.getElementById("prevBtn");
+    const checkBtn = document.getElementById("checkBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const nextBtnLabel = document.getElementById("nextBtnLabel");
+
+    // Elemen Bottom Sheet Daftar Soal
+    const drawerModal = document.getElementById("drawerModal");
+    const closeDrawerBtn = document.getElementById("closeDrawerBtn");
+    const drawerSummaryText = document.getElementById("drawerSummaryText");
+    const drawerGrid = document.getElementById("drawerGrid");
+    const drawerEvalBtn = document.getElementById("drawerEvalBtn");
+    const drawerResetBtn = document.getElementById("drawerResetBtn");
+
+    // Elemen Evaluasi
+    const evalEmoji = document.getElementById("evalEmoji");
+    const evalSub = document.getElementById("evalSub");
+    const evalTotalScore = document.getElementById("evalTotalScore");
+    const evalAccuracyPct = document.getElementById("evalAccuracyPct");
+    const statCorrect = document.getElementById("statCorrect");
+    const statWrong = document.getElementById("statWrong");
+    const statUnanswered = document.getElementById("statUnanswered");
+    const evalFirstTryChip = document.getElementById("evalFirstTryChip");
+    const evalPgScore = document.getElementById("evalPgScore");
+    const evalPgPct = document.getElementById("evalPgPct");
+    const evalPgkScore = document.getElementById("evalPgkScore");
+    const evalPgkPct = document.getElementById("evalPgkPct");
+    const evalChapterList = document.getElementById("evalChapterList");
+    const retryUnsolvedBtn = document.getElementById("retryUnsolvedBtn");
+    const backToQuizBtn = document.getElementById("backToQuizBtn");
+    const evalResetAllBtn = document.getElementById("evalResetAllBtn");
+
+    // Elemen Modal Reset
+    const resetModal = document.getElementById("resetModal");
+    const cancelResetBtn = document.getElementById("cancelResetBtn");
+    const confirmResetBtn = document.getElementById("confirmResetBtn");
+
+    // ==================== LOGIKA FILTER & TAMPILAN ====================
+    function getFilteredQuestions(filterKey) {
+      if (filterKey === "all") return QUESTIONS;
+      if (filterKey === "ch21") return QUESTIONS.filter(q => q.chapter === 21);
+      if (filterKey === "ch22") return QUESTIONS.filter(q => q.chapter === 22);
+      if (filterKey === "ch23") return QUESTIONS.filter(q => q.chapter === 23);
+      if (filterKey === "ch24") return QUESTIONS.filter(q => q.chapter === 24);
+      if (filterKey === "ch25") return QUESTIONS.filter(q => q.chapter === 25);
+      if (filterKey === "pg") return QUESTIONS.filter(q => q.type === "pg");
+      if (filterKey === "pgk") return QUESTIONS.filter(q => q.type === "pgk");
+      if (filterKey === "unsolved") return QUESTIONS.filter(q => !isSolved(getProg(q.id).status));
+      return QUESTIONS;
+    }
+
+    function updateFilterChipsUI() {
+      document.querySelectorAll(".filter-chip").forEach(btn => {
+        if (btn.dataset.filter === state.filter) {
+          btn.className = "filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-[#B45309] text-white shadow-xs transition active:scale-95";
+        } else {
+          btn.className = "filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95";
+        }
+      });
+    }
+
+    function applyFilter(filterKey, preferredId = null) {
+      const list = getFilteredQuestions(filterKey);
+      state.filter = filterKey;
+      state.activeIds = list.map(q => q.id);
+      updateFilterChipsUI();
+
+      if (state.activeIds.length === 0) {
+        state.currentIndex = 0;
+      } else if (preferredId && state.activeIds.includes(preferredId)) {
+        state.currentIndex = state.activeIds.indexOf(preferredId);
+      } else {
+        const firstUnfinished = state.activeIds.findIndex(id => !isSolved(getProg(id).status));
+        state.currentIndex = firstUnfinished >= 0 ? firstUnfinished : 0;
+      }
+
+      saveState();
+      if (state.view === "quiz") {
+        renderCurrentQuestion();
+      }
+    }
+
+    function setView(viewName) {
+      state.view = viewName;
+      if (viewName === "quiz") {
+        evalView.classList.add("hidden");
+        quizView.classList.remove("hidden");
+        stickyBottomBar.classList.remove("hidden");
+        renderCurrentQuestion();
+      } else {
+        quizView.classList.add("hidden");
+        stickyBottomBar.classList.add("hidden");
+        evalView.classList.remove("hidden");
+        renderEvaluation();
+      }
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    document.querySelectorAll(".filter-chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        applyFilter(btn.dataset.filter, null);
+        setView("quiz");
+      });
+    });
+
+    emptyToEvalBtn.addEventListener("click", () => setView("eval"));
+    emptyToAllBtn.addEventListener("click", () => {
+      applyFilter("all", 1);
+      setView("quiz");
+    });
+
+    // ==================== STATISTIK HEADER ====================
+    function updateHeaderStats() {
+      const solvedCount = QUESTIONS.filter(q => isSolved(getProg(q.id).status)).length;
+      const pct = Math.round((solvedCount / QUESTIONS.length) * 100);
+      headerScoreBadge.textContent = `${solvedCount}/50 Benar`;
+      globalProgressBar.style.width = `${pct}%`;
+    }
+
+    // ==================== RENDER PERTANYAAN & OPSI ====================
+    function getCurrentQuestion() {
+      if (state.activeIds.length === 0) return null;
+      const id = state.activeIds[state.currentIndex];
+      return QUESTIONS.find(q => q.id === id) || null;
+    }
+
+    function renderCurrentQuestion() {
+      updateHeaderStats();
+      const q = getCurrentQuestion();
+
+      if (!q) {
+        emptyFilterCard.classList.remove("hidden");
+        questionCard.classList.add("hidden");
+        optionsContainer.classList.add("hidden");
+        feedbackCard.classList.add("hidden");
+        stickyBottomBar.classList.add("hidden");
+        return;
+      }
+
+      emptyFilterCard.classList.add("hidden");
+      questionCard.classList.remove("hidden");
+      optionsContainer.classList.remove("hidden");
+      stickyBottomBar.classList.remove("hidden");
+
+      const prog = getProg(q.id);
+      const solved = isSolved(prog.status);
+
+      if (solved) {
+        state.selection = [...q.correct];
+        state.checkedWrong = false;
+      } else if (prog.status === "wrong" && prog.selected.length > 0) {
+        state.selection = [...prog.selected];
+        state.checkedWrong = true;
+      } else {
+        state.selection = [];
+        state.checkedWrong = false;
+      }
+
+      const meta = CHAPTER_META[q.chapter];
+      qChapterBadge.textContent = `${meta.short} • ${meta.title}`;
+      qNumberLabel.textContent = `Soal ${q.id} / 50` + (state.activeIds.length < 50 ? ` (Urutan ${state.currentIndex + 1}/${state.activeIds.length})` : "");
+      qAttemptBadge.textContent = prog.attempts > 0 ? `${prog.attempts}x cek` : "";
+      questionText.textContent = q.question;
+
+      if (q.type === "pg") {
+        qTypeBadge.textContent = "Pilihan Ganda • Pilih 1";
+        qTypeBadge.className = "px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-stone-100 text-[#451A03]";
+        pgkCallout.classList.add("hidden");
+      } else {
+        qTypeBadge.textContent = "PG Kompleks — Pilih lebih dari satu";
+        qTypeBadge.className = "px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-indigo-100 text-indigo-900";
+        pgkCallout.classList.remove("hidden");
+      }
+
+      // Animasi transisi halus pada kartu soal
+      questionCard.classList.remove("animate-fade-up");
+      void questionCard.offsetWidth;
+      questionCard.classList.add("animate-fade-up");
+
+      renderOptions(q, solved);
+
+      if (solved) {
+        renderCorrectFeedback(q, prog);
+      } else if (prog.status === "wrong" && prog.selected.length > 0) {
+        renderAutoCorrectionFeedback(q, prog.selected);
+      } else {
+        feedbackCard.classList.add("hidden");
+        feedbackCard.innerHTML = "";
+      }
+
+      updateBottomBar(solved, prog);
+      saveState();
+      quizView.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderOptions(q, solved) {
+      optionsContainer.innerHTML = "";
+
+      LETTERS.forEach(letter => {
+        const isSelected = state.selection.includes(letter);
+        // HANYA tandai merah lembut pada opsi SALAH yang dipilih user (opsi benar TIDAK pernah ditandai hijau saat masih salah!)
+        const isCheckedWrongOption = !solved && state.checkedWrong && isSelected && !q.correct.includes(letter);
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.disabled = solved;
+
+        let cardCls = "w-full min-h-[54px] text-left p-3.5 rounded-2xl border-2 transition-all flex items-center gap-3 ";
+        let badgeCls = "w-8 h-8 rounded-xl flex items-center justify-center font-extrabold text-sm shrink-0 transition-all ";
+        let indicator = "";
+
+        if (solved && isSelected) {
+          cardCls += "border-[#059669] bg-emerald-50 text-emerald-950 shadow-xs";
+          badgeCls += "bg-[#059669] text-white";
+          indicator = `<span class="ml-auto text-[#059669] font-extrabold text-lg shrink-0">✓</span>`;
+        } else if (solved && !isSelected) {
+          cardCls += "border-stone-200/70 bg-white/60 text-stone-400 opacity-70";
+          badgeCls += "bg-stone-100 text-stone-400";
+        } else if (isCheckedWrongOption) {
+          cardCls += "border-rose-400 bg-rose-50/90 text-rose-950 shadow-xs active:scale-[0.99]";
+          badgeCls += "bg-[#E11D48] text-white";
+          indicator = `<span class="ml-auto text-[#E11D48] font-extrabold text-base shrink-0">✕</span>`;
+        } else if (isSelected) {
+          if (q.type === "pgk") {
+            cardCls += "border-indigo-600 bg-indigo-50/90 text-indigo-950 shadow-xs active:scale-[0.99]";
+            badgeCls += "bg-indigo-600 text-white";
+            indicator = `<span class="ml-auto w-5 h-5 rounded-md bg-indigo-600 text-white flex items-center justify-center text-xs font-bold shrink-0">✓</span>`;
+          } else {
+            cardCls += "border-[#D97706] bg-amber-50/90 text-[#451A03] shadow-xs active:scale-[0.99]";
+            badgeCls += "bg-[#D97706] text-white";
+            indicator = `<span class="ml-auto w-5 h-5 rounded-full border-[5px] border-[#D97706] bg-white shrink-0"></span>`;
+          }
+        } else {
+          cardCls += "border-[#F3E8D8] bg-white hover:border-[#FDE68A] text-[#451A03] active:scale-[0.99]";
+          badgeCls += "bg-amber-50 text-[#B45309]";
+          indicator = q.type === "pgk"
+            ? `<span class="ml-auto w-5 h-5 rounded-md border-2 border-amber-300 bg-white shrink-0"></span>`
+            : `<span class="ml-auto w-5 h-5 rounded-full border-2 border-amber-300 bg-white shrink-0"></span>`;
+        }
+
+        btn.className = cardCls;
+        btn.innerHTML = `
+          <span class="${badgeCls}">${letter}</span>
+          <span class="text-[15px] font-medium leading-snug flex-1">${q.options[letter]}</span>
+          ${indicator}
+        `;
+
+        if (!solved) {
+          btn.addEventListener("click", () => toggleOption(q, letter));
+        }
+
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function toggleOption(q, letter) {
+      // Hapus highlight merah sementara saat user mulai memperbaiki pilihannya
+      state.checkedWrong = false;
+
+      if (q.type === "pg") {
+        state.selection = [letter];
+      } else {
+        if (state.selection.includes(letter)) {
+          state.selection = state.selection.filter(l => l !== letter);
+        } else {
+          state.selection = [...state.selection, letter].sort();
+        }
+      }
+      renderOptions(q, false);
+      updateBottomBar(false, getProg(q.id));
+    }
+
+    function updateBottomBar(solved, prog) {
+      prevBtn.disabled = state.currentIndex === 0;
+      const isLast = state.currentIndex === state.activeIds.length - 1;
+      nextBtnLabel.textContent = isLast ? "Hasil" : "Next";
+
+      if (solved) {
+        checkBtn.disabled = false;
+        checkBtn.className = "flex-1 min-h-[50px] px-4 rounded-2xl bg-[#059669] hover:bg-emerald-700 active:scale-[0.98] text-white font-extrabold text-sm shadow-md shadow-emerald-900/15 transition flex items-center justify-center gap-1.5";
+        checkBtn.innerHTML = isLast ? "Lihat Hasil &amp; Evaluasi 🏆" : "Lanjut Soal Berikutnya →";
+      } else {
+        checkBtn.disabled = state.selection.length === 0;
+        checkBtn.className = "flex-1 min-h-[50px] px-4 rounded-2xl bg-[#B45309] hover:bg-amber-800 active:scale-[0.98] disabled:bg-stone-300 disabled:text-stone-500 disabled:shadow-none text-white font-extrabold text-sm shadow-md shadow-amber-900/15 transition flex items-center justify-center gap-1.5";
+        checkBtn.innerHTML = prog.attempts > 0 ? "Periksa Ulang" : "Periksa Jawaban";
+      }
+    }
+
+    // ==================== MESIN AUTO-KOREKSI CERDAS (ZERO SPOILERS) ====================
+    function arraysMatch(a, b) {
+      if (a.length !== b.length) return false;
+      const sa = [...a].sort();
+      const sb = [...b].sort();
+      return sa.every((v, i) => v === sb[i]);
+    }
+
+    function handleCheckAction() {
+      const q = getCurrentQuestion();
+      if (!q) return;
+      const prog = getProg(q.id);
+      const solved = isSolved(prog.status);
+
+      if (solved) {
+        if (state.currentIndex < state.activeIds.length - 1) {
+          state.currentIndex++;
+          renderCurrentQuestion();
+        } else {
+          setView("eval");
+        }
+        return;
+      }
+
+      if (state.selection.length === 0) return;
+
+      const attempts = prog.attempts + 1;
+      const isCorrect = arraysMatch(state.selection, q.correct);
+
+      if (isCorrect) {
+        const status = attempts === 1 ? "first_try" : "corrected";
+        state.checkedWrong = false;
+        state.progress[q.id] = { status, attempts, selected: [...state.selection] };
+        saveState();
+
+        updateHeaderStats();
+        qAttemptBadge.textContent = `${attempts}x cek`;
+        renderOptions(q, true);
+        renderCorrectFeedback(q, state.progress[q.id]);
+        updateBottomBar(true, state.progress[q.id]);
+      } else {
+        state.checkedWrong = true;
+        state.progress[q.id] = { status: "wrong", attempts, selected: [...state.selection] };
+        saveState();
+
+        updateHeaderStats();
+        qAttemptBadge.textContent = `${attempts}x cek`;
+        renderOptions(q, false);
+        renderAutoCorrectionFeedback(q, state.selection);
+        updateBottomBar(false, state.progress[q.id]);
+
+        feedbackCard.classList.remove("animate-shake");
+        void feedbackCard.offsetWidth;
+        feedbackCard.classList.add("animate-shake");
+      }
+
+      setTimeout(() => {
+        feedbackCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 60);
+    }
+
+    function renderCorrectFeedback(q, prog) {
+      feedbackCard.classList.remove("hidden", "border-rose-300", "bg-amber-50/95");
+      feedbackCard.classList.add("border-emerald-300", "bg-emerald-50/95");
+
+      const title = prog.status === "first_try"
+        ? "Benar di percobaan pertama! 🎉"
+        : `Mantap! Berhasil diperbaiki di percobaan ke-${prog.attempts} 👏`;
+
+      feedbackCard.innerHTML = `
+        <div class="flex items-start gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#059669] text-white flex items-center justify-center font-extrabold text-lg shrink-0">✓</div>
+          <div class="flex-1 min-w-0">
+            <div class="font-extrabold text-sm text-emerald-950">${title}</div>
+            <p class="text-[13px] text-emerald-900/90 mt-1 leading-relaxed">${q.correctFeedback}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAutoCorrectionFeedback(q, selectedLetters) {
+      feedbackCard.classList.remove("hidden", "border-emerald-300", "bg-emerald-50/95");
+      feedbackCard.classList.add("border-rose-300", "bg-amber-50/95");
+
+      let errorHTML = "";
+
+      if (q.type === "pg") {
+        const chosen = selectedLetters[0];
+        const reason = (q.wrongReasons && q.wrongReasons[chosen])
+          ? q.wrongReasons[chosen]
+          : "Pilihan ini belum sesuai dengan aturan grammar atau prosedur kerja pastry.";
+        errorHTML = `<p class="text-[13px] text-rose-950 leading-relaxed"><strong>Opsi ${chosen}:</strong> ${reason}</p>`;
+      } else {
+        // PGK: JANGAN pernah membocorkan huruf atau isi opsi yang benar!
+        const wrongPicked = selectedLetters.filter(l => !q.correct.includes(l));
+        const rightPickedCount = selectedLetters.filter(l => q.correct.includes(l)).length;
+        const missedCount = q.correct.filter(l => !selectedLetters.includes(l)).length;
+        const bullets = [];
+
+        wrongPicked.forEach(letter => {
+          const reason = (q.wrongReasons && q.wrongReasons[letter])
+            ? q.wrongReasons[letter]
+            : "Pernyataan ini belum memenuhi syarat pertanyaan.";
+          bullets.push(`<strong>Opsi ${letter} salah:</strong> ${reason}`);
+        });
+
+        if (rightPickedCount > 0 && wrongPicked.length > 0) {
+          bullets.push(`Ada <strong>${rightPickedCount} pilihanmu yang sudah tepat</strong>, jadi cukup perbaiki opsi yang salah.`);
+        } else if (rightPickedCount > 0 && wrongPicked.length === 0) {
+          bullets.push(`<strong>${rightPickedCount} pilihan yang kamu centang sudah tepat</strong>, tidak ada opsi salah yang tercentang.`);
+        }
+
+        if (missedCount > 0) {
+          bullets.push(`Masih ada <strong>${missedCount} pernyataan benar</strong> yang belum kamu pilih.`);
+        }
+
+        errorHTML = `<ul class="list-disc pl-4 space-y-1.5 text-[13px] text-rose-950 leading-relaxed">${bullets.map(b => `<li>${b}</li>`).join("")}</ul>`;
+      }
+
+      feedbackCard.innerHTML = `
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="w-8 h-8 rounded-xl bg-[#E11D48] text-white flex items-center justify-center text-sm font-extrabold shrink-0">!</span>
+          <div>
+            <div class="font-extrabold text-sm text-[#E11D48]">Auto-Koreksi • Belum Tepat</div>
+            <div class="text-[11px] font-medium text-amber-950/75">Ubah pilihanmu lalu tekan <strong>Periksa Ulang</strong>.</div>
+          </div>
+        </div>
+
+        <div class="bg-rose-50 border border-rose-200 rounded-2xl p-3 mb-2.5">
+          <div class="text-[11px] font-extrabold uppercase tracking-wide text-[#E11D48] mb-1">❌ Letak Kesalahanmu:</div>
+          ${errorHTML}
+        </div>
+
+        <div class="bg-white border border-[#FDE68A] rounded-2xl p-3">
+          <div class="text-[11px] font-extrabold uppercase tracking-wide text-[#B45309] mb-1">🧭 Seharusnya (Petunjuk Aturan):</div>
+          <p class="text-[13px] text-[#451A03]/90 leading-relaxed">${q.ruleHint}</p>
+        </div>
+      `;
+    }
+
+    // Event listener tombol navigasi bawah
+    checkBtn.addEventListener("click", handleCheckAction);
+
+    prevBtn.addEventListener("click", () => {
+      if (state.currentIndex > 0) {
+        state.currentIndex--;
+        renderCurrentQuestion();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (state.currentIndex < state.activeIds.length - 1) {
+        state.currentIndex++;
+        renderCurrentQuestion();
+      } else {
+        setView("eval");
+      }
+    });
+
+    // ==================== BOTTOM SHEET: DAFTAR SOAL (1–50) ====================
+    function openDrawer() {
+      const currentQ = getCurrentQuestion();
+      const activeId = currentQ ? currentQ.id : -1;
+
+      let cCorrect = 0;
+      let cWrong = 0;
+      let cUnanswered = 0;
+
+      drawerGrid.innerHTML = "";
+
+      QUESTIONS.forEach(q => {
+        const p = getProg(q.id);
+        if (isSolved(p.status)) cCorrect++;
+        else if (p.status === "wrong") cWrong++;
+        else cUnanswered++;
+
+        const isActive = q.id === activeId && state.view === "quiz";
+        const btn = document.createElement("button");
+        btn.type = "button";
+
+        let cls = "h-12 rounded-2xl font-extrabold text-sm flex items-center justify-center transition active:scale-95 relative ";
+        if (isSolved(p.status)) {
+          cls += "bg-[#059669] text-white shadow-xs";
+        } else if (p.status === "wrong") {
+          cls += "bg-[#E11D48] text-white shadow-xs";
+        } else {
+          cls += "bg-stone-200/80 text-stone-700 hover:bg-stone-300/80";
+        }
+
+        if (isActive) {
+          cls += " ring-[3px] ring-offset-2 ring-[#D97706]";
+        }
+
+        btn.className = cls;
+        btn.innerHTML = `<span>${q.id}</span>${q.type === "pgk" ? '<span class="absolute top-1 right-1.5 w-1.5 h-1.5 rounded-full bg-indigo-300"></span>' : ''}`;
+        btn.addEventListener("click", () => {
+          closeDrawer();
+          if (!state.activeIds.includes(q.id)) {
+            applyFilter("all", q.id);
+          } else {
+            state.currentIndex = state.activeIds.indexOf(q.id);
+          }
+          setView("quiz");
+        });
+
+        drawerGrid.appendChild(btn);
+      });
+
+      drawerSummaryText.textContent = `Benar: ${cCorrect} • Salah/Revisi: ${cWrong} • Belum: ${cUnanswered}`;
+      drawerModal.classList.remove("hidden");
+    }
+
+    function closeDrawer() {
+      drawerModal.classList.add("hidden");
+    }
+
+    openDrawerBtn.addEventListener("click", openDrawer);
+    closeDrawerBtn.addEventListener("click", closeDrawer);
+    drawerModal.addEventListener("click", e => {
+      if (e.target === drawerModal) closeDrawer();
+    });
+    drawerEvalBtn.addEventListener("click", () => {
+      closeDrawer();
+      setView("eval");
+    });
+    drawerResetBtn.addEventListener("click", () => {
+      closeDrawer();
+      openResetModal();
+    });
+
+    // ==================== HALAMAN HASIL & EVALUASI ====================
+    function renderEvaluation() {
+      updateHeaderStats();
+
+      let firstTry = 0;
+      let corrected = 0;
+      let wrongCount = 0;
+      let unanswered = 0;
+
+      QUESTIONS.forEach(q => {
+        const st = getProg(q.id).status;
+        if (st === "first_try") firstTry++;
+        else if (st === "corrected") corrected++;
+        else if (st === "wrong") wrongCount++;
+        else unanswered++;
+      });
+
+      const totalSolved = firstTry + corrected;
+      const pct = Math.round((totalSolved / QUESTIONS.length) * 100);
+
+      evalTotalScore.textContent = `${totalSolved}/50`;
+      evalAccuracyPct.textContent = `${pct}%`;
+      statCorrect.textContent = totalSolved;
+      statWrong.textContent = wrongCount;
+      statUnanswered.textContent = unanswered;
+      evalFirstTryChip.textContent = `${firstTry} benar 1x coba`;
+
+      if (totalSolved === 50 && firstTry >= 40) {
+        evalEmoji.textContent = "🏆";
+        evalSub.textContent = "Luar biasa! Seluruh materi Book 2 (Ch. 21–25) siap untuk kerja internasional!";
+      } else if (totalSolved === 50) {
+        evalEmoji.textContent = "🎉";
+        evalSub.textContent = "Hebat! Semua 50 soal penutup Book 2 berhasil kamu selesaikan.";
+      } else {
+        evalEmoji.textContent = "🥖";
+        evalSub.textContent = "Terus berlatih dengan Auto-Koreksi sampai 50/50 benar!";
+      }
+
+      // Statistik PG vs PGK
+      const pgQs = QUESTIONS.filter(q => q.type === "pg");
+      const pgkQs = QUESTIONS.filter(q => q.type === "pgk");
+      const pgSolved = pgQs.filter(q => isSolved(getProg(q.id).status)).length;
+      const pgkSolved = pgkQs.filter(q => isSolved(getProg(q.id).status)).length;
+
+      evalPgScore.textContent = `${pgSolved} / ${pgQs.length}`;
+      evalPgPct.textContent = `${Math.round((pgSolved / pgQs.length) * 100)}% benar`;
+      evalPgkScore.textContent = `${pgkSolved} / ${pgkQs.length}`;
+      evalPgkPct.textContent = `${Math.round((pgkSolved / pgkQs.length) * 100)}% benar`;
+
+      // Rincian performa per Chapter (Ch. 21–25)
+      evalChapterList.innerHTML = "";
+      [21, 22, 23, 24, 25].forEach(ch => {
+        const chQs = QUESTIONS.filter(q => q.chapter === ch);
+        const chFirst = chQs.filter(q => getProg(q.id).status === "first_try").length;
+        const chCorr = chQs.filter(q => getProg(q.id).status === "corrected").length;
+        const chSolved = chFirst + chCorr;
+
+        const row = document.createElement("div");
+        row.innerHTML = `
+          <div class="flex items-center justify-between text-xs mb-1.5 gap-2">
+            <span class="font-bold text-[#451A03] truncate">Ch. ${ch}: ${CHAPTER_META[ch].title}</span>
+            <span class="font-extrabold text-[#B45309] shrink-0">${chSolved}/${chQs.length} <span class="text-stone-400 font-semibold">(${Math.round((chSolved / chQs.length) * 100)}%)</span></span>
+          </div>
+          <div class="w-full h-2.5 bg-amber-100 rounded-full overflow-hidden flex">
+            <div class="h-full bg-[#059669] transition-all" style="width: ${(chFirst / chQs.length) * 100}%"></div>
+            <div class="h-full bg-[#D97706] transition-all" style="width: ${(chCorr / chQs.length) * 100}%"></div>
+          </div>
+        `;
+        evalChapterList.appendChild(row);
+      });
+
+      const unsolvedCount = QUESTIONS.length - totalSolved;
+      if (unsolvedCount > 0) {
+        retryUnsolvedBtn.classList.remove("hidden");
+        retryUnsolvedBtn.textContent = `🔁 Ulangi Soal Belum Benar (${unsolvedCount})`;
+      } else {
+        retryUnsolvedBtn.classList.add("hidden");
+      }
+    }
+
+    openEvalBtn.addEventListener("click", () => {
+      setView(state.view === "eval" ? "quiz" : "eval");
+    });
+
+    backToQuizBtn.addEventListener("click", () => setView("quiz"));
+
+    retryUnsolvedBtn.addEventListener("click", () => {
+      applyFilter("unsolved", null);
+      setView("quiz");
+    });
+
+    // ==================== MODAL KONFIRMASI RESET ====================
+    function openResetModal() {
+      resetModal.classList.remove("hidden");
+    }
+    function closeResetModal() {
+      resetModal.classList.add("hidden");
+    }
+
+    evalResetAllBtn.addEventListener("click", openResetModal);
+    cancelResetBtn.addEventListener("click", closeResetModal);
+    resetModal.addEventListener("click", e => {
+      if (e.target === resetModal) closeResetModal();
+    });
+
+    confirmResetBtn.addEventListener("click", () => {
+      state.progress = {};
+      state.lastQuestionId = 1;
+      state.filter = "all";
+      state.checkedWrong = false;
+      localStorage.removeItem(STORAGE_KEY);
+      closeResetModal();
+      applyFilter("all", 1);
+      setView("quiz");
+    });
+
+    // ==================== INISIALISASI APLIKASI ====================
+    loadState();
+    applyFilter(state.filter, state.lastQuestionId);
+  </script>
+</body>
+</html>
